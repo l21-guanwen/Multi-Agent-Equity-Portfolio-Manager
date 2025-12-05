@@ -1,0 +1,501 @@
+Ticker,Security_Name,GICS_Sector,Bid_Ask_Spread_Bps,Commission_Bps,Market_Impact_Bps_Per_1M,Avg_Daily_Volume_M,Avg_Daily_Dollar_Volume_M,Liquidity_Bucket,Total_Oneway_Cost_Bps,Total_Roundtrip_Cost_Bps,Cost_Low_Urgency_Bps,Cost_Medium_Urgency_Bps,Cost_High_Urgency_Bps,Max_Participation_Rate_Pct,Days_To_Liquidate,TCost_Model_ID,Model_Name,As_Of_Date
+NVDA,Nvidia,Information Technology,6.49,3.58,8.66,50.37,9236.78,5,11.16,22.32,7.81,11.16,16.74,19.38,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+AAPL,Apple Inc.,Information Technology,7.72,3.28,16.06,46.57,13073.29,5,15.17,30.35,10.62,15.17,22.76,17.8,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+MSFT,Microsoft,Information Technology,15.92,2.42,33.61,55.7,26783.86,5,27.19,54.38,19.03,27.19,40.79,18.64,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+AMZN,Amazon,Consumer Discretionary,29.91,4.95,35.1,34.09,7810.76,5,37.45,74.9,26.21,37.45,56.17,18.16,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+GOOGL,Alphabet Inc. (Class A),Communication Services,29.34,3.42,51.91,24.35,7734.85,5,44.05,88.09,30.83,44.05,66.07,10.68,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+GOOG,Alphabet Inc. (Class C),Communication Services,30.72,1.95,47.96,22.4,7131.28,5,41.29,82.58,28.9,41.29,61.93,14.36,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+AVGO,Broadcom,Information Technology,36.66,1.41,52.12,22.23,8471.42,5,45.8,91.59,32.06,45.8,68.7,13.7,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+META,Meta Platforms,Communication Services,35.61,1.61,64.26,26.0,17198.19,5,51.55,103.09,36.08,51.55,77.32,15.05,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+TSLA,"Tesla, Inc.",Consumer Discretionary,33.47,1.98,58.0,22.22,10098.64,5,47.72,95.44,33.4,47.72,71.58,13.79,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+BRK.B,Berkshire Hathaway,Financials,40.84,1.64,63.58,13.02,6549.76,5,53.85,107.7,37.7,53.85,80.78,10.89,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+WMT,Walmart,Consumer Staples,39.51,1.75,54.97,11.06,1270.69,3,48.99,97.97,34.29,48.99,73.48,11.38,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+LLY,Lilly (Eli),Health Care,39.57,2.14,71.92,10.56,10709.54,5,57.88,115.76,40.52,57.88,86.82,10.42,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+JPM,JPMorgan Chase,Financials,42.19,1.69,71.89,14.88,4703.33,5,58.74,117.47,41.11,58.74,88.1,14.05,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+V,Visa Inc.,Financials,38.05,4.59,87.65,14.13,4621.23,5,67.43,134.87,47.2,67.43,101.15,11.42,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ORCL,Oracle Corporation,Information Technology,38.8,1.32,68.17,8.23,1764.12,4,54.81,109.62,38.37,54.81,82.21,15.14,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+XOM,ExxonMobil,Energy,43.48,3.1,74.24,5.47,640.98,2,61.96,123.92,43.37,61.96,92.94,10.95,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+JNJ,Johnson & Johnson,Health Care,42.19,2.64,74.58,5.73,1159.21,3,61.03,122.06,42.72,61.03,91.54,9.64,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+MA,Mastercard,Financials,46.18,4.93,85.2,22.48,12193.62,5,70.62,141.24,49.43,70.62,105.93,8.03,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+NFLX,Netflix,Communication Services,43.01,1.45,72.6,6.49,669.83,2,59.26,118.51,41.48,59.26,88.88,7.34,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PLTR,Palantir Technologies,Information Technology,41.62,2.59,75.79,11.93,2122.66,4,61.3,122.6,42.91,61.3,91.95,7.75,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ABBV,AbbVie,Health Care,50.51,4.88,78.82,9.22,2108.62,4,69.54,139.08,48.68,69.54,104.31,11.4,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+COST,Costco,Consumer Staples,45.5,4.46,75.54,6.66,5962.9,5,64.98,129.96,45.49,64.98,97.47,11.87,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+BAC,Bank of America,Financials,46.38,4.27,70.48,5.4,292.55,2,62.7,125.39,43.89,62.7,94.04,7.69,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+AMD,Advanced Micro Devices,Information Technology,42.34,2.03,76.29,4.41,952.27,3,61.34,122.69,42.94,61.34,92.02,12.54,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+HD,Home Depot (The),Consumer Discretionary,45.04,1.68,83.42,8.47,2972.66,5,65.92,131.83,46.14,65.92,98.87,9.77,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PG,Procter & Gamble,Consumer Staples,47.07,3.67,66.72,11.07,1609.53,4,60.57,121.14,42.4,60.57,90.85,11.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+GE,GE Aerospace,Industrials,43.6,4.72,76.48,8.44,2462.31,4,64.76,129.52,45.33,64.76,97.14,13.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+CSCO,Cisco,Information Technology,48.18,3.23,69.82,7.05,548.38,2,62.23,124.45,43.56,62.23,93.34,12.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+CVX,Chevron Corporation,Energy,45.31,3.29,85.07,3.42,520.48,2,68.48,136.96,47.94,68.48,102.72,10.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+KO,Coca-Cola Company (The),Consumer Staples,46.24,2.12,63.33,20.49,1443.6,4,56.9,113.81,39.83,56.9,85.36,8.86,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+UNH,UnitedHealth Group,Health Care,45.31,4.08,71.04,11.22,3741.51,5,62.26,124.51,43.58,62.26,93.38,6.34,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+IBM,IBM,Information Technology,52.8,1.75,78.73,4.8,1477.43,4,67.51,135.02,47.26,67.51,101.27,9.17,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+WFC,Wells Fargo,Financials,47.26,2.29,88.33,22.55,2034.02,4,70.09,140.18,49.06,70.09,105.14,10.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+CAT,Caterpillar Inc.,Industrials,44.19,2.7,75.38,7.53,4511.7,5,62.49,124.98,43.74,62.49,93.73,8.61,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+MS,Morgan Stanley,Financials,49.84,3.03,71.46,7.29,1275.22,3,63.68,127.36,44.58,63.68,95.52,10.32,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+AXP,American Express,Financials,43.96,1.97,91.34,9.54,3540.5,5,69.62,139.24,48.73,69.62,104.43,10.68,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+MU,Micron Technology,Information Technology,48.25,1.46,64.71,11.0,2492.39,4,57.94,115.87,40.56,57.94,86.91,10.08,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+GS,Goldman Sachs,Financials,41.74,3.44,58.7,7.99,6693.18,5,53.66,107.33,37.57,53.66,80.5,9.23,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+MRK,Merck & Co.,Health Care,43.7,2.15,79.91,3.26,329.09,2,63.96,127.92,44.77,63.96,95.94,10.85,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+CRM,Salesforce,Information Technology,48.4,3.32,72.57,4.5,1113.92,3,63.81,127.62,44.67,63.81,95.71,11.37,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+TMUS,T-Mobile US,Communication Services,50.02,1.62,68.42,15.6,3244.59,5,60.84,121.68,42.59,60.84,91.26,8.31,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PM,Philip Morris International,Consumer Staples,48.38,2.92,82.35,3.64,540.71,2,68.29,136.59,47.8,68.29,102.44,13.3,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+APP,AppLovin Corporation,Information Technology,47.52,3.13,78.64,4.69,3210.09,5,66.21,132.42,46.35,66.21,99.31,10.28,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+RTX,RTX Corporation,Industrials,46.97,1.21,72.17,5.2,890.14,3,60.78,121.55,42.54,60.78,91.17,10.51,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+MCD,McDonald's,Consumer Discretionary,43.5,2.35,66.54,5.19,1601.71,4,57.37,114.73,40.16,57.37,86.05,11.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ABT,Abbott Laboratories,Health Care,45.84,1.54,83.86,6.97,874.49,3,66.39,132.77,46.47,66.39,99.58,10.91,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+TMO,Thermo Fisher Scientific,Health Care,46.61,1.25,82.08,16.56,9524.78,5,65.6,131.2,45.92,65.6,98.4,12.35,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+AMAT,Applied Materials,Information Technology,51.17,4.96,76.09,3.6,971.19,3,68.59,137.17,48.01,68.59,102.88,11.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ISRG,Intuitive Surgical,Health Care,49.15,2.29,91.85,2.74,1555.75,4,72.79,145.58,50.95,72.79,109.18,9.19,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PEP,PepsiCo,Consumer Staples,42.89,4.24,68.61,3.12,458.13,2,59.99,119.99,42.0,59.99,89.99,11.13,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+LRCX,Lam Research,Information Technology,49.16,2.02,64.97,12.92,2029.14,4,59.08,118.16,41.36,59.08,88.62,8.12,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+INTC,Intel,Information Technology,47.09,3.73,71.74,7.14,289.11,2,63.14,126.28,44.2,63.14,94.71,10.61,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+C,Citigroup,Financials,46.22,4.04,76.91,3.63,391.55,2,65.6,131.2,45.92,65.6,98.4,10.32,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+UBER,Uber,Industrials,50.08,3.38,79.22,10.41,947.34,3,68.03,136.06,47.62,68.03,102.05,9.97,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+LIN,Linde plc,Materials,51.4,2.89,75.44,11.76,4747.37,5,66.31,132.61,46.41,66.31,99.46,10.12,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+DIS,Walt Disney Company (The),Communication Services,51.1,2.65,80.19,11.25,1186.51,3,68.29,136.58,47.8,68.29,102.44,6.61,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+QCOM,Qualcomm,Information Technology,45.79,2.4,67.36,14.44,2517.79,5,58.97,117.94,41.28,58.97,88.45,9.28,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+INTU,Intuit,Information Technology,47.38,4.72,88.92,3.33,2209.65,4,72.87,145.74,51.01,72.87,109.3,10.56,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+AMGN,Amgen,Health Care,49.3,4.32,76.71,8.91,3031.63,5,67.33,134.66,47.13,67.33,100.99,10.7,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+T,AT&T,Communication Services,51.3,4.86,86.41,4.9,124.29,1,73.71,147.42,51.6,73.71,110.57,8.31,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+NOW,ServiceNow,Information Technology,47.0,1.5,80.31,10.97,9198.47,5,65.15,130.3,45.6,65.15,97.72,12.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+VZ,Verizon,Communication Services,47.88,3.92,81.22,8.26,340.74,2,68.47,136.94,47.93,68.47,102.71,8.62,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+NEE,NextEra Energy,Utilities,45.12,4.75,82.12,9.23,769.7,3,68.37,136.74,47.86,68.37,102.56,12.29,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+APH,Amphenol,Information Technology,44.85,1.72,81.15,7.08,987.02,3,64.72,129.44,45.3,64.72,97.08,11.2,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+GEV,GE Vernova,Industrials,50.87,1.27,82.71,2.72,1708.76,4,68.06,136.11,47.64,68.06,102.08,9.06,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SCHW,Charles Schwab Corporation,Financials,52.57,3.96,88.3,5.61,532.87,2,74.4,148.79,52.08,74.4,111.59,13.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+TJX,TJX Companies,Consumer Discretionary,48.28,3.3,79.23,22.56,3390.69,5,67.06,134.11,46.94,67.06,100.58,7.95,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ACN,Accenture,Information Technology,51.51,4.37,83.33,15.52,4181.18,5,71.79,143.58,50.25,71.79,107.68,12.17,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+BLK,BlackRock,Financials,49.58,1.56,76.94,1.89,2033.37,4,64.82,129.64,45.38,64.82,97.23,12.34,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+TXN,Texas Instruments,Information Technology,46.62,4.18,89.28,2.5,450.41,2,72.13,144.27,50.49,72.13,108.2,8.98,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+BKNG,Booking Holdings,Consumer Discretionary,49.64,1.81,72.35,2.31,11594.39,5,62.8,125.61,43.96,62.8,94.2,13.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ANET,Arista Networks,Information Technology,53.17,1.65,92.17,8.07,1037.76,3,74.33,148.65,52.03,74.33,111.49,9.82,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+DHR,Danaher Corporation,Health Care,48.45,1.66,77.44,10.11,2296.95,4,64.6,129.21,45.22,64.6,96.9,10.9,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+KLAC,KLA Corporation,Information Technology,53.25,4.26,66.31,2.8,3383.78,5,64.04,128.08,44.83,64.04,96.06,10.84,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+BA,Boeing,Industrials,40.76,3.66,78.88,5.05,1020.44,3,63.48,126.97,44.44,63.48,95.23,10.04,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+GILD,Gilead Sciences,Health Care,51.09,3.09,72.41,10.72,1313.91,3,64.84,129.68,45.39,64.84,97.26,11.93,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SPGI,S&P Global,Financials,48.95,2.44,84.68,8.06,4005.45,5,69.25,138.5,48.47,69.25,103.87,11.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PFE,Pfizer,Health Care,47.79,4.51,72.73,5.37,137.95,1,64.77,129.54,45.34,64.77,97.16,6.8,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+COF,Capital One,Financials,48.96,2.57,74.39,5.92,1360.53,4,64.24,128.49,44.97,64.24,96.36,12.9,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+BSX,Boston Scientific,Health Care,42.79,4.27,62.94,4.94,482.82,2,57.13,114.25,39.99,57.13,85.69,6.95,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+UNP,Union Pacific Corporation,Industrials,48.09,2.76,74.43,3.16,749.06,3,64.02,128.04,44.81,64.02,96.03,12.34,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+WELL,Welltower,Real Estate,49.82,2.51,58.66,5.55,1132.12,3,56.75,113.5,39.72,56.75,85.12,12.53,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYK,Stryker Corporation,Health Care,53.18,2.85,65.38,7.23,2633.82,5,62.13,124.26,43.49,62.13,93.2,8.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+LOW,Lowe's,Consumer Discretionary,47.26,2.21,84.23,11.65,2868.29,5,67.95,135.9,47.57,67.95,101.93,9.44,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ADBE,Adobe Inc.,Information Technology,46.39,3.99,84.44,6.38,2096.68,4,69.4,138.8,48.58,69.4,104.1,8.05,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PANW,Palo Alto Networks,Information Technology,47.31,3.01,81.55,8.48,1659.39,4,67.44,134.88,47.21,67.44,101.16,9.83,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ADI,Analog Devices,Information Technology,51.56,1.93,70.41,2.19,608.12,2,62.91,125.83,44.04,62.91,94.37,9.65,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PGR,Progressive Corporation,Financials,49.8,4.6,77.77,4.42,1002.94,3,68.38,136.76,47.87,68.38,102.57,11.82,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+ETN,Eaton Corporation,Industrials,47.28,2.54,78.22,1.3,440.02,2,65.29,130.57,45.7,65.29,97.93,12.87,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+MDT,Medtronic,Health Care,50.41,3.17,68.98,2.67,272.08,1,62.87,125.74,44.01,62.87,94.31,13.04,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+DE,Deere & Company,Industrials,49.16,4.63,90.28,7.73,3735.24,5,74.35,148.69,52.04,74.35,111.52,9.13,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+CRWD,CrowdStrike,Information Technology,51.78,3.5,85.27,25.28,12969.39,5,72.02,144.04,50.41,72.02,108.03,9.83,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+HOOD,"Robinhood Markets, Inc.",Financials,46.83,1.47,76.58,1.7,233.57,1,63.17,126.34,44.22,63.17,94.76,6.87,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+HON,Honeywell,Industrials,47.95,4.76,78.56,3.75,720.52,3,68.02,136.03,47.61,68.02,102.02,8.62,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+PLD,Prologis,Real Estate,47.82,3.51,80.11,9.16,1174.24,3,67.48,134.96,47.23,67.48,101.22,12.15,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+BX,Blackstone Inc.,Financials,44.61,2.34,62.11,2.25,341.07,2,55.7,111.4,38.99,55.7,83.55,13.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+VRTX,Vertex Pharmaceuticals,Health Care,49.89,1.56,76.47,5.16,2360.55,4,64.73,129.47,45.31,64.73,97.1,7.75,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+CB,Chubb Limited,Financials,49.78,4.18,72.99,7.72,2273.37,4,65.56,131.12,45.89,65.56,98.34,9.04,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+CEG,Constellation Energy,Utilities,49.01,3.48,70.43,5.9,2173.85,4,63.2,126.41,44.24,63.2,94.8,10.17,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+COP,ConocoPhillips,Energy,48.3,3.13,76.19,2.15,200.52,1,65.38,130.76,45.77,65.38,98.07,10.78,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN001,Synthetic Company 1,Consumer Staples,45.39,4.58,93.82,2.6,964.77,3,74.18,148.36,51.93,74.18,111.27,8.46,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN002,Synthetic Company 2,Communication Services,48.57,4.15,84.86,7.85,533.42,2,70.87,141.74,49.61,70.87,106.31,10.89,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN003,Synthetic Company 3,Materials,48.74,1.61,75.07,4.29,1545.24,4,63.52,127.03,44.46,63.52,95.27,9.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN004,Synthetic Company 4,Industrials,47.22,2.25,84.01,0.44,183.28,1,67.86,135.72,47.5,67.86,101.79,10.05,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN005,Synthetic Company 5,Industrials,49.45,1.99,91.09,7.23,781.35,3,72.26,144.52,50.58,72.26,108.39,11.11,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN006,Synthetic Company 6,Real Estate,51.21,3.98,87.39,0.18,5.65,1,73.28,146.56,51.29,73.28,109.92,10.01,7.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN007,Synthetic Company 7,Materials,55.51,1.13,80.24,7.02,297.46,2,69.01,138.02,48.31,69.01,103.51,9.16,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN008,Synthetic Company 8,Financials,50.33,3.28,74.52,1.35,410.42,2,65.7,131.41,45.99,65.7,98.56,9.82,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN009,Synthetic Company 9,Financials,50.54,4.05,85.23,16.12,1641.44,4,71.93,143.87,50.35,71.93,107.9,9.87,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN010,Synthetic Company 10,Consumer Staples,49.42,4.51,82.59,2.7,1303.31,3,70.51,141.01,49.36,70.51,105.76,9.34,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN011,Synthetic Company 11,Health Care,44.13,2.37,86.98,2.11,140.98,1,67.92,135.85,47.55,67.92,101.89,9.51,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN012,Synthetic Company 12,Consumer Discretionary,49.75,4.29,84.82,0.99,77.94,1,71.57,143.14,50.1,71.57,107.36,13.23,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN013,Synthetic Company 13,Energy,50.12,1.44,88.29,1.9,393.85,2,70.65,141.3,49.45,70.65,105.97,11.14,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN014,Synthetic Company 14,Health Care,57.1,4.39,75.27,10.78,2416.25,4,70.57,141.14,49.4,70.57,105.86,9.47,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN015,Synthetic Company 15,Industrials,49.21,1.51,90.2,28.28,990.79,3,71.22,142.43,49.85,71.22,106.82,11.44,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN016,Synthetic Company 16,Health Care,50.73,2.59,81.31,2.49,521.38,2,68.61,137.23,48.03,68.61,102.92,9.37,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN017,Synthetic Company 17,Consumer Discretionary,49.62,4.19,96.17,3.28,580.45,2,77.08,154.17,53.96,77.08,115.63,12.41,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN018,Synthetic Company 18,Consumer Staples,46.48,1.6,74.46,6.42,1130.96,3,62.07,124.14,43.45,62.07,93.1,10.74,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN019,Synthetic Company 19,Health Care,53.11,1.92,93.4,11.22,2145.17,4,75.17,150.34,52.62,75.17,112.76,9.86,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN020,Synthetic Company 20,Utilities,51.95,3.89,81.11,4.83,269.7,1,70.42,140.84,49.29,70.42,105.63,10.96,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN021,Synthetic Company 21,Consumer Staples,52.08,3.88,74.33,2.81,324.31,2,67.09,134.17,46.96,67.09,100.63,6.92,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN022,Synthetic Company 22,Energy,46.96,3.56,75.65,3.01,1079.85,3,64.87,129.74,45.41,64.87,97.3,7.82,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN023,Synthetic Company 23,Financials,53.91,3.78,76.98,6.27,348.45,2,69.22,138.45,48.46,69.22,103.84,7.68,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN024,Synthetic Company 24,Consumer Staples,45.75,3.17,83.33,0.1,43.43,1,67.71,135.42,47.4,67.71,101.56,10.3,0.9,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN025,Synthetic Company 25,Energy,51.64,2.01,83.99,4.97,251.12,1,69.82,139.64,48.87,69.82,104.73,13.49,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN026,Synthetic Company 26,Consumer Staples,56.45,2.38,75.22,2.33,863.83,3,68.22,136.43,47.75,68.22,102.32,14.49,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN027,Synthetic Company 27,Energy,46.69,1.73,79.28,8.28,2042.3,4,64.71,129.42,45.3,64.71,97.07,11.35,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN028,Synthetic Company 28,Communication Services,48.03,4.63,96.72,0.79,304.17,2,77.01,154.01,53.9,77.01,115.51,11.06,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN029,Synthetic Company 29,Real Estate,50.01,3.33,93.36,4.76,1224.01,3,75.02,150.04,52.51,75.02,112.53,6.46,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN030,Synthetic Company 30,Utilities,48.33,2.6,83.24,3.46,111.4,1,68.39,136.77,47.87,68.39,102.58,8.95,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN031,Synthetic Company 31,Financials,45.01,2.85,79.77,5.52,1369.89,4,65.24,130.48,45.67,65.24,97.86,8.5,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN032,Synthetic Company 32,Consumer Discretionary,50.15,4.79,80.88,0.39,122.0,1,70.31,140.61,49.21,70.31,105.46,8.77,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN033,Synthetic Company 33,Materials,46.73,1.61,84.77,4.43,252.48,1,67.36,134.73,47.15,67.36,101.05,9.68,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN034,Synthetic Company 34,Materials,51.36,3.34,71.72,4.19,1953.25,4,64.89,129.77,45.42,64.89,97.33,9.07,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN035,Synthetic Company 35,Utilities,46.91,3.02,77.42,4.48,1818.32,4,65.19,130.38,45.63,65.19,97.79,6.12,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN036,Synthetic Company 36,Consumer Discretionary,54.31,3.45,66.13,5.0,878.27,3,63.67,127.33,44.57,63.67,95.5,11.57,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN037,Synthetic Company 37,Consumer Staples,47.52,1.07,82.98,5.79,2637.19,5,66.32,132.64,46.43,66.32,99.48,7.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN038,Synthetic Company 38,Information Technology,48.79,4.49,84.79,8.45,171.06,1,71.28,142.56,49.9,71.28,106.92,10.53,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN039,Synthetic Company 39,Utilities,52.44,4.73,76.13,1.57,417.43,2,69.01,138.03,48.31,69.01,103.52,14.15,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN040,Synthetic Company 40,Utilities,46.22,3.26,92.46,8.81,683.05,3,72.6,145.21,50.82,72.6,108.9,8.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN041,Synthetic Company 41,Energy,50.62,3.79,70.1,3.52,439.87,2,64.14,128.29,44.9,64.14,96.22,5.0,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN042,Synthetic Company 42,Energy,53.77,4.69,68.05,0.57,29.22,1,65.6,131.19,45.92,65.6,98.4,9.46,1.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN043,Synthetic Company 43,Real Estate,45.08,3.83,81.65,0.41,143.62,1,67.2,134.39,47.04,67.2,100.79,12.22,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN044,Synthetic Company 44,Financials,50.5,1.61,88.29,2.1,1045.71,3,71.0,142.01,49.7,71.0,106.51,13.93,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN045,Synthetic Company 45,Materials,50.41,3.31,92.89,8.1,1759.38,4,74.96,149.91,52.47,74.96,112.43,7.62,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN046,Synthetic Company 46,Consumer Staples,52.21,3.43,76.13,6.29,2042.65,4,67.6,135.19,47.32,67.6,101.4,11.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN047,Synthetic Company 47,Health Care,46.1,2.7,88.34,7.98,3933.6,5,69.92,139.84,48.94,69.92,104.88,9.11,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN048,Synthetic Company 48,Consumer Staples,46.01,3.95,79.65,3.67,725.53,3,66.77,133.55,46.74,66.77,100.16,9.79,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN049,Synthetic Company 49,Information Technology,51.26,4.74,78.14,3.24,796.39,3,69.44,138.88,48.61,69.44,104.16,15.36,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN050,Synthetic Company 50,Health Care,50.74,4.7,86.83,0.97,397.84,2,73.49,146.98,51.44,73.49,110.23,7.03,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN051,Synthetic Company 51,Information Technology,50.63,2.8,85.03,2.12,232.65,1,70.63,141.27,49.44,70.63,105.95,10.53,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN052,Synthetic Company 52,Financials,50.92,1.45,67.2,2.98,375.05,2,60.51,121.02,42.36,60.51,90.76,10.96,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN053,Synthetic Company 53,Real Estate,47.65,4.94,91.33,0.81,151.09,1,74.43,148.86,52.1,74.43,111.65,12.24,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN054,Synthetic Company 54,Consumer Staples,50.34,4.36,90.48,1.64,346.69,2,74.77,149.53,52.34,74.77,112.15,10.28,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN055,Synthetic Company 55,Consumer Staples,50.56,1.5,74.5,4.91,1691.98,4,64.03,128.06,44.82,64.03,96.04,10.69,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN056,Synthetic Company 56,Utilities,47.78,4.68,83.04,6.74,1886.6,4,70.09,140.19,49.07,70.09,105.14,9.23,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN057,Synthetic Company 57,Real Estate,55.51,4.48,83.82,32.12,3340.13,5,74.14,148.29,51.9,74.14,111.22,10.56,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN058,Synthetic Company 58,Utilities,51.33,3.08,81.94,13.63,881.42,3,69.71,139.42,48.8,69.71,104.57,9.33,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN059,Synthetic Company 59,Communication Services,46.09,3.37,75.07,5.52,610.13,2,63.95,127.89,44.76,63.95,95.92,11.32,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN060,Synthetic Company 60,Utilities,51.7,2.6,74.21,3.03,1292.25,3,65.55,131.11,45.89,65.55,98.33,9.32,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN061,Synthetic Company 61,Consumer Discretionary,46.92,1.22,79.56,5.23,2331.52,4,64.46,128.92,45.12,64.46,96.69,10.79,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN062,Synthetic Company 62,Consumer Discretionary,52.0,2.34,88.83,8.1,3214.14,5,72.76,145.51,50.93,72.76,109.14,10.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN063,Synthetic Company 63,Energy,53.25,4.21,84.01,0.88,173.89,1,72.84,145.68,50.99,72.84,109.26,12.3,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN064,Synthetic Company 64,Utilities,47.17,1.02,76.46,3.05,476.59,2,62.83,125.66,43.98,62.83,94.25,9.98,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN065,Synthetic Company 65,Health Care,52.63,2.33,85.76,9.45,3146.08,5,71.53,143.06,50.07,71.53,107.29,6.51,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN066,Synthetic Company 66,Utilities,51.23,2.59,57.2,2.43,624.13,2,56.81,113.62,39.77,56.81,85.21,12.53,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN067,Synthetic Company 67,Consumer Discretionary,52.22,3.15,88.81,4.52,1931.32,4,73.66,147.32,51.56,73.66,110.49,8.24,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN068,Synthetic Company 68,Information Technology,55.47,4.68,65.75,4.67,303.45,2,65.29,130.58,45.7,65.29,97.93,8.74,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN069,Synthetic Company 69,Financials,49.16,2.39,76.94,1.13,155.1,1,65.44,130.88,45.81,65.44,98.16,8.83,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN070,Synthetic Company 70,Industrials,47.59,2.39,70.81,2.41,1082.25,3,61.59,123.18,43.11,61.59,92.38,12.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN071,Synthetic Company 71,Materials,47.03,3.95,69.17,2.37,619.85,2,62.05,124.1,43.44,62.05,93.08,5.8,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN072,Synthetic Company 72,Information Technology,47.47,2.81,89.15,0.23,59.56,1,71.12,142.23,49.78,71.12,106.68,16.29,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN073,Synthetic Company 73,Consumer Discretionary,49.48,1.9,75.8,0.45,18.32,1,64.54,129.08,45.18,64.54,96.81,12.18,1.8,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN074,Synthetic Company 74,Communication Services,50.88,2.81,82.55,9.07,248.58,1,69.53,139.06,48.67,69.53,104.29,10.48,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN075,Synthetic Company 75,Energy,50.67,1.56,79.37,1.78,859.26,3,66.58,133.17,46.61,66.58,99.87,9.93,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN076,Synthetic Company 76,Financials,52.16,1.71,83.31,4.01,647.1,2,69.44,138.88,48.61,69.44,104.16,10.64,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN077,Synthetic Company 77,Communication Services,49.94,2.99,80.46,1.89,477.34,2,68.19,136.38,47.73,68.19,102.29,11.06,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN078,Synthetic Company 78,Health Care,54.21,2.68,69.5,14.29,6076.63,5,64.53,129.07,45.17,64.53,96.8,11.32,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN079,Synthetic Company 79,Financials,49.18,4.66,87.93,1.53,183.99,1,73.21,146.43,51.25,73.21,109.82,11.12,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN080,Synthetic Company 80,Industrials,58.11,2.45,75.97,2.87,770.39,3,69.49,138.98,48.64,69.49,104.23,10.19,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN081,Synthetic Company 81,Health Care,51.59,3.32,67.11,10.62,3765.72,5,62.67,125.35,43.87,62.67,94.01,9.67,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN082,Synthetic Company 82,Materials,47.29,3.53,76.36,9.38,1508.71,4,65.36,130.71,45.75,65.36,98.03,9.73,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN083,Synthetic Company 83,Consumer Staples,46.48,1.05,91.53,1.37,598.63,2,70.05,140.11,49.04,70.05,105.08,9.68,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN084,Synthetic Company 84,Real Estate,51.26,3.65,86.51,8.33,3356.71,5,72.54,145.07,50.77,72.54,108.8,12.31,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN085,Synthetic Company 85,Information Technology,49.06,1.71,76.8,3.36,1351.09,4,64.64,129.28,45.25,64.64,96.96,11.25,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN086,Synthetic Company 86,Financials,52.13,4.84,77.19,3.31,985.6,3,69.51,139.01,48.65,69.51,104.26,5.0,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN087,Synthetic Company 87,Consumer Staples,51.41,1.59,77.41,0.73,177.89,1,66.0,132.0,46.2,66.0,99.0,11.31,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN088,Synthetic Company 88,Industrials,49.45,2.66,96.1,0.78,109.9,1,75.44,150.87,52.81,75.44,113.16,10.46,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN089,Synthetic Company 89,Real Estate,47.34,1.34,82.88,6.64,1843.58,4,66.45,132.9,46.52,66.45,99.68,9.99,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN090,Synthetic Company 90,Communication Services,45.14,4.99,82.95,3.78,568.41,2,69.03,138.07,48.32,69.03,103.55,9.29,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN091,Synthetic Company 91,Communication Services,48.63,3.01,88.19,2.91,130.22,1,71.42,142.84,49.99,71.42,107.13,12.26,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN092,Synthetic Company 92,Consumer Discretionary,52.36,3.38,81.59,6.77,2205.49,4,70.36,140.72,49.25,70.36,105.54,11.94,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN093,Synthetic Company 93,Consumer Discretionary,50.27,1.27,77.35,7.66,2052.85,4,65.08,130.16,45.55,65.08,97.62,8.54,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN094,Synthetic Company 94,Financials,46.11,4.0,78.19,1.03,235.74,1,66.15,132.3,46.31,66.15,99.23,10.85,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN095,Synthetic Company 95,Real Estate,50.42,1.84,79.28,4.82,522.48,2,66.69,133.38,46.68,66.69,100.04,8.08,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN096,Synthetic Company 96,Consumer Staples,50.89,4.59,79.29,1.02,220.96,1,69.68,139.37,48.78,69.68,104.52,7.3,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN097,Synthetic Company 97,Real Estate,47.29,1.82,85.73,7.02,984.24,3,68.33,136.66,47.83,68.33,102.5,8.76,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN098,Synthetic Company 98,Industrials,50.39,1.76,80.31,5.43,2542.74,5,67.11,134.23,46.98,67.11,100.67,11.74,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN099,Synthetic Company 99,Information Technology,49.98,1.15,85.56,15.91,5335.23,5,68.91,137.83,48.24,68.91,103.37,11.95,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN100,Synthetic Company 100,Communication Services,46.29,2.89,78.92,0.67,28.58,1,65.5,130.99,45.85,65.5,98.24,11.09,1.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN101,Synthetic Company 101,Real Estate,51.01,3.26,80.54,0.36,27.97,1,69.03,138.07,48.32,69.03,103.55,11.46,1.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN102,Synthetic Company 102,Communication Services,51.67,1.26,63.99,1.67,720.87,3,59.09,118.18,41.36,59.09,88.64,11.04,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN103,Synthetic Company 103,Consumer Discretionary,53.07,4.1,87.05,1.72,114.99,1,74.16,148.32,51.91,74.16,111.24,8.76,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN104,Synthetic Company 104,Communication Services,53.03,2.81,82.57,1.56,380.19,2,70.61,141.22,49.43,70.61,105.92,10.89,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN105,Synthetic Company 105,Communication Services,45.85,3.1,87.96,11.86,5638.24,5,70.0,140.0,49.0,70.0,105.0,11.6,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN106,Synthetic Company 106,Consumer Discretionary,47.09,2.76,56.68,1.55,42.25,1,54.65,109.29,38.25,54.65,81.97,11.53,0.8,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN107,Synthetic Company 107,Financials,51.35,2.6,96.41,1.8,501.62,2,76.49,152.97,53.54,76.49,114.73,12.42,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN108,Synthetic Company 108,Consumer Discretionary,51.52,3.24,78.84,7.15,2348.44,4,68.42,136.84,47.89,68.42,102.63,11.42,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN109,Synthetic Company 109,Information Technology,51.32,1.62,88.52,3.23,1524.41,4,71.54,143.08,50.08,71.54,107.31,10.75,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN110,Synthetic Company 110,Energy,60.0,1.73,71.45,7.66,2518.5,5,67.45,134.91,47.22,67.45,101.18,12.17,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN111,Synthetic Company 111,Information Technology,51.51,4.45,84.58,0.57,268.3,1,72.49,144.98,50.74,72.49,108.73,9.99,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN112,Synthetic Company 112,Financials,53.04,4.78,71.0,3.75,1704.57,4,66.81,133.61,46.76,66.81,100.21,8.32,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN113,Synthetic Company 113,Health Care,52.83,2.49,74.96,0.21,73.06,1,66.38,132.77,46.47,66.38,99.58,9.68,0.6,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN114,Synthetic Company 114,Information Technology,51.83,2.08,95.12,0.46,194.85,1,75.56,151.12,52.89,75.56,113.34,8.54,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN115,Synthetic Company 115,Real Estate,48.74,3.58,77.99,12.19,1893.03,4,66.94,133.89,46.86,66.94,100.42,8.72,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN116,Synthetic Company 116,Consumer Discretionary,52.01,2.63,81.33,1.04,336.19,2,69.3,138.61,48.51,69.3,103.96,9.77,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN117,Synthetic Company 117,Energy,47.52,1.1,86.71,3.98,1926.76,4,68.22,136.44,47.75,68.22,102.33,8.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN118,Synthetic Company 118,Consumer Discretionary,49.13,1.62,83.72,2.83,827.76,3,68.05,136.09,47.63,68.05,102.07,9.42,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN119,Synthetic Company 119,Financials,48.27,3.86,80.77,2.44,198.6,1,68.38,136.76,47.87,68.38,102.57,6.27,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN120,Synthetic Company 120,Information Technology,50.02,3.64,82.58,11.75,5125.53,5,69.94,139.87,48.96,69.94,104.9,10.48,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN121,Synthetic Company 121,Communication Services,56.69,1.11,98.82,0.4,149.25,1,78.86,157.73,55.2,78.86,118.3,10.06,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN122,Synthetic Company 122,Financials,44.25,1.89,79.32,5.61,1550.87,4,63.67,127.35,44.57,63.67,95.51,8.4,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN123,Synthetic Company 123,Consumer Discretionary,51.91,1.92,81.38,16.7,2720.19,5,68.57,137.14,48.0,68.57,102.85,11.35,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN124,Synthetic Company 124,Financials,45.14,3.69,88.37,4.13,1982.1,4,70.45,140.89,49.31,70.45,105.67,11.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN125,Synthetic Company 125,Financials,48.45,1.08,88.63,13.96,6689.88,5,69.62,139.24,48.73,69.62,104.43,6.81,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN126,Synthetic Company 126,Consumer Discretionary,53.08,1.42,89.2,0.48,28.58,1,72.56,145.12,50.79,72.56,108.84,8.52,1.6,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN127,Synthetic Company 127,Communication Services,49.96,4.2,84.75,2.97,848.16,3,71.56,143.12,50.09,71.56,107.34,8.51,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN128,Synthetic Company 128,Communication Services,46.47,1.71,70.39,1.84,734.8,3,60.14,120.28,42.1,60.14,90.21,8.19,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN129,Synthetic Company 129,Communication Services,47.48,3.61,92.49,6.97,3473.55,5,73.6,147.19,51.52,73.6,110.4,11.74,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN130,Synthetic Company 130,Real Estate,51.76,1.95,70.39,20.21,5699.22,5,63.03,126.06,44.12,63.03,94.54,9.67,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN131,Synthetic Company 131,Materials,47.44,1.4,81.85,1.89,662.75,2,66.04,132.08,46.23,66.04,99.06,9.55,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN132,Synthetic Company 132,Real Estate,50.32,1.97,73.45,5.68,2397.94,4,63.86,127.72,44.7,63.86,95.79,6.07,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN133,Synthetic Company 133,Energy,49.99,3.89,79.25,1.27,569.63,2,68.51,137.02,47.96,68.51,102.76,11.3,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN134,Synthetic Company 134,Health Care,47.85,4.42,82.33,4.38,578.29,2,69.51,139.02,48.66,69.51,104.27,7.56,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN135,Synthetic Company 135,Energy,56.1,4.32,82.06,3.48,1541.38,4,73.4,146.8,51.38,73.4,110.1,10.19,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN136,Synthetic Company 136,Information Technology,51.56,2.59,82.84,18.26,5553.87,5,69.79,139.57,48.85,69.79,104.68,10.63,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN137,Synthetic Company 137,Consumer Discretionary,43.65,3.67,92.49,4.99,1253.17,3,71.75,143.49,50.22,71.75,107.62,12.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN138,Synthetic Company 138,Industrials,50.4,1.82,83.38,2.33,1059.88,3,68.71,137.42,48.1,68.71,103.06,7.42,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN139,Synthetic Company 139,Consumer Staples,47.83,2.17,77.76,0.81,20.71,1,64.96,129.93,45.47,64.96,97.45,5.0,3.9,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN140,Synthetic Company 140,Real Estate,52.51,4.59,87.64,0.87,66.43,1,74.66,149.33,52.26,74.66,112.0,10.38,0.6,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN141,Synthetic Company 141,Utilities,47.34,1.05,89.07,1.59,477.66,2,69.26,138.52,48.48,69.26,103.89,13.66,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN142,Synthetic Company 142,Utilities,49.47,1.34,69.9,1.65,98.45,1,61.03,122.06,42.72,61.03,91.54,12.52,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN143,Synthetic Company 143,Information Technology,51.35,1.83,84.52,9.69,3924.71,5,69.77,139.53,48.84,69.77,104.65,10.46,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN144,Synthetic Company 144,Communication Services,52.25,1.11,85.06,4.51,2080.0,4,69.76,139.52,48.83,69.76,104.64,9.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN145,Synthetic Company 145,Consumer Discretionary,46.13,1.73,77.21,4.0,224.8,1,63.4,126.79,44.38,63.4,95.1,11.67,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN146,Synthetic Company 146,Utilities,48.73,3.33,90.59,0.9,215.27,1,72.99,145.99,51.1,72.99,109.49,8.11,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN147,Synthetic Company 147,Communication Services,48.35,2.69,78.45,10.08,4562.91,5,66.09,132.18,46.26,66.09,99.13,11.0,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN148,Synthetic Company 148,Utilities,47.93,4.57,80.84,6.53,3111.27,5,68.96,137.91,48.27,68.96,103.44,11.03,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN149,Synthetic Company 149,Energy,55.12,4.27,78.35,0.54,172.4,1,71.0,142.01,49.7,71.0,106.51,12.16,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN150,Synthetic Company 150,Energy,51.14,2.37,80.01,6.23,1511.49,4,67.95,135.89,47.56,67.95,101.92,15.54,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN151,Synthetic Company 151,Real Estate,46.0,2.04,70.88,4.17,238.88,1,60.48,120.96,42.33,60.48,90.72,10.83,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN152,Synthetic Company 152,Utilities,52.49,2.52,68.07,0.72,200.11,1,62.8,125.59,43.96,62.8,94.19,9.04,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN153,Synthetic Company 153,Information Technology,56.06,3.36,92.27,3.41,1188.82,3,77.53,155.05,54.27,77.53,116.29,10.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN154,Synthetic Company 154,Financials,52.74,2.07,72.67,3.71,816.84,3,64.78,129.55,45.34,64.78,97.16,6.54,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN155,Synthetic Company 155,Communication Services,45.09,3.5,71.52,1.3,77.36,1,61.8,123.61,43.26,61.8,92.71,8.69,0.6,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN156,Synthetic Company 156,Health Care,48.53,2.64,62.75,14.58,476.26,2,58.28,116.55,40.79,58.28,87.42,9.19,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN157,Synthetic Company 157,Information Technology,53.49,3.21,74.41,9.83,4853.86,5,67.16,134.32,47.01,67.16,100.74,9.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN158,Synthetic Company 158,Information Technology,47.65,2.74,69.06,5.78,1172.27,3,61.1,122.2,42.77,61.1,91.65,10.35,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN159,Synthetic Company 159,Industrials,51.01,2.18,92.64,3.46,1460.91,4,74.0,148.0,51.8,74.0,111.0,8.43,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN160,Synthetic Company 160,Health Care,52.17,4.79,87.83,2.83,427.72,2,74.79,149.59,52.36,74.79,112.19,12.28,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN161,Synthetic Company 161,Consumer Staples,46.96,4.05,74.09,5.56,1536.04,4,64.57,129.15,45.2,64.57,96.86,10.06,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN162,Synthetic Company 162,Communication Services,49.47,1.56,97.48,4.33,1302.34,3,75.04,150.07,52.53,75.04,112.55,10.06,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN163,Synthetic Company 163,Communication Services,39.99,4.47,87.41,0.64,129.23,1,68.17,136.34,47.72,68.17,102.26,9.41,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN164,Synthetic Company 164,Communication Services,46.85,2.95,77.28,3.68,517.52,2,65.01,130.03,45.51,65.01,97.52,10.33,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN165,Synthetic Company 165,Consumer Discretionary,48.91,4.58,59.48,8.58,3289.84,5,58.77,117.55,41.14,58.77,88.16,11.72,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN166,Synthetic Company 166,Health Care,46.15,4.2,98.17,3.19,97.67,1,76.36,152.72,53.45,76.36,114.54,8.29,0.5,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN167,Synthetic Company 167,Real Estate,54.72,2.7,68.6,0.47,196.07,1,64.36,128.72,45.05,64.36,96.54,8.72,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN168,Synthetic Company 168,Health Care,45.4,1.09,66.35,8.06,3906.51,5,56.97,113.93,39.88,56.97,85.45,9.46,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN169,Synthetic Company 169,Materials,48.46,2.07,87.83,1.37,343.98,2,70.22,140.44,49.15,70.22,105.33,7.36,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN170,Synthetic Company 170,Consumer Staples,50.09,3.17,99.05,1.83,597.63,2,77.74,155.48,54.42,77.74,116.61,8.43,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN171,Synthetic Company 171,Materials,53.98,3.53,90.54,1.28,405.52,2,75.79,151.59,53.06,75.79,113.69,9.12,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN172,Synthetic Company 172,Health Care,45.46,2.03,84.15,2.26,736.18,3,66.84,133.68,46.79,66.84,100.26,11.8,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN173,Synthetic Company 173,Materials,53.15,1.56,84.22,7.45,1394.56,4,70.24,140.48,49.17,70.24,105.36,10.6,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN174,Synthetic Company 174,Industrials,49.73,4.34,86.36,4.0,840.31,3,72.39,144.77,50.67,72.39,108.58,10.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN175,Synthetic Company 175,Consumer Staples,46.73,4.94,85.56,1.51,719.03,3,71.08,142.16,49.76,71.08,106.62,11.77,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN176,Synthetic Company 176,Consumer Discretionary,51.03,3.1,81.7,10.9,2793.76,5,69.47,138.94,48.63,69.47,104.2,9.8,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN177,Synthetic Company 177,Consumer Discretionary,50.58,1.69,80.81,10.6,3371.42,5,67.38,134.76,47.17,67.38,101.07,10.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN178,Synthetic Company 178,Health Care,48.12,2.09,79.38,10.31,3075.12,5,65.84,131.68,46.09,65.84,98.76,9.81,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN179,Synthetic Company 179,Materials,50.01,1.07,73.65,1.59,383.27,2,62.9,125.8,44.03,62.9,94.35,10.58,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN180,Synthetic Company 180,Materials,48.58,4.66,77.34,3.3,350.75,2,67.62,135.23,47.33,67.62,101.43,8.89,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN181,Synthetic Company 181,Consumer Discretionary,50.18,1.47,66.21,21.17,9307.33,5,59.67,119.34,41.77,59.67,89.5,5.16,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN182,Synthetic Company 182,Materials,51.62,3.31,78.64,7.8,2410.97,4,68.43,136.86,47.9,68.43,102.65,9.81,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN183,Synthetic Company 183,Financials,54.45,2.1,71.6,0.49,90.12,1,65.12,130.24,45.58,65.12,97.68,12.92,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN184,Synthetic Company 184,Real Estate,46.28,3.22,71.15,0.35,99.08,1,61.93,123.86,43.35,61.93,92.9,11.85,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN185,Synthetic Company 185,Communication Services,56.26,3.61,81.23,3.27,1467.86,4,72.35,144.7,50.65,72.35,108.53,11.96,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN186,Synthetic Company 186,Information Technology,44.02,4.32,90.94,12.14,2115.97,4,71.8,143.6,50.26,71.8,107.7,12.5,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN187,Synthetic Company 187,Real Estate,49.36,1.83,87.06,4.07,1425.67,4,70.04,140.08,49.03,70.04,105.06,10.22,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN188,Synthetic Company 188,Energy,51.71,1.04,67.34,3.51,705.76,3,60.57,121.14,42.4,60.57,90.85,10.41,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN189,Synthetic Company 189,Information Technology,50.51,1.55,71.57,0.92,56.01,1,62.59,125.18,43.81,62.59,93.88,8.84,0.8,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN190,Synthetic Company 190,Financials,47.76,4.6,86.94,5.76,1600.01,4,71.95,143.9,50.36,71.95,107.92,9.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN191,Synthetic Company 191,Energy,49.29,4.5,72.0,8.73,3359.87,5,65.14,130.28,45.6,65.14,97.71,11.25,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN192,Synthetic Company 192,Energy,48.24,3.39,77.76,2.71,101.91,1,66.39,132.78,46.47,66.39,99.58,12.47,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN193,Synthetic Company 193,Energy,47.96,3.4,83.98,7.77,3495.79,5,69.37,138.74,48.56,69.37,104.06,9.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN194,Synthetic Company 194,Materials,52.54,3.66,72.24,16.7,7285.49,5,66.05,132.09,46.23,66.05,99.07,9.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN195,Synthetic Company 195,Industrials,50.92,1.7,80.61,1.31,91.92,1,67.47,134.93,47.23,67.47,101.2,10.03,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN196,Synthetic Company 196,Consumer Staples,47.85,4.66,69.22,3.78,1099.15,3,63.19,126.39,44.24,63.19,94.79,11.22,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN197,Synthetic Company 197,Information Technology,52.67,2.68,75.14,1.73,478.92,2,66.58,133.15,46.6,66.58,99.86,7.12,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN198,Synthetic Company 198,Utilities,50.79,2.53,82.36,8.02,1984.05,4,69.11,138.21,48.37,69.11,103.66,5.44,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN199,Synthetic Company 199,Real Estate,52.19,3.08,66.87,4.58,1146.73,3,62.61,125.21,43.83,62.61,93.91,8.95,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN200,Synthetic Company 200,Consumer Discretionary,51.61,1.19,83.09,5.35,1537.92,4,68.54,137.07,47.98,68.54,102.8,7.62,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN201,Synthetic Company 201,Energy,47.3,1.67,79.51,8.23,1661.68,4,65.07,130.14,45.55,65.07,97.6,9.03,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN202,Synthetic Company 202,Communication Services,47.98,3.95,83.89,2.9,904.17,3,69.88,139.77,48.92,69.88,104.83,9.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN203,Synthetic Company 203,Materials,51.87,1.33,81.21,12.75,3961.87,5,67.87,135.73,47.51,67.87,101.8,9.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN204,Synthetic Company 204,Information Technology,51.79,3.41,90.85,3.85,359.45,2,74.74,149.47,52.32,74.74,112.1,12.91,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN205,Synthetic Company 205,Consumer Staples,49.88,1.98,80.91,0.93,101.53,1,67.37,134.75,47.16,67.37,101.06,10.67,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN206,Synthetic Company 206,Energy,50.03,2.56,76.07,6.31,282.52,1,65.61,131.21,45.92,65.61,98.41,10.67,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN207,Synthetic Company 207,Energy,53.46,2.15,80.4,8.3,612.17,2,69.08,138.16,48.36,69.08,103.62,11.33,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN208,Synthetic Company 208,Health Care,47.86,2.42,83.77,2.31,1008.04,3,68.24,136.47,47.77,68.24,102.35,7.8,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN209,Synthetic Company 209,Industrials,51.54,3.88,80.24,9.84,1003.86,3,69.77,139.54,48.84,69.77,104.65,12.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN210,Synthetic Company 210,Financials,49.04,2.19,79.77,12.22,3511.11,5,66.6,133.19,46.62,66.6,99.89,9.93,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN211,Synthetic Company 211,Energy,49.24,3.27,74.22,1.74,677.05,3,65.0,129.99,45.5,65.0,97.49,11.36,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN212,Synthetic Company 212,Industrials,53.17,2.9,74.51,20.66,4633.26,5,66.74,133.49,46.72,66.74,100.12,7.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN213,Synthetic Company 213,Information Technology,52.38,3.65,68.64,0.86,64.61,1,64.17,128.33,44.92,64.17,96.25,6.91,0.9,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN214,Synthetic Company 214,Real Estate,52.33,4.75,93.83,1.25,373.69,2,77.83,155.65,54.48,77.83,116.74,11.66,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN215,Synthetic Company 215,Materials,53.73,3.93,69.76,1.22,336.63,2,65.68,131.36,45.98,65.68,98.52,10.79,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN216,Synthetic Company 216,Information Technology,49.94,1.86,74.26,11.36,960.39,3,63.96,127.91,44.77,63.96,95.93,8.22,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN217,Synthetic Company 217,Consumer Staples,51.67,1.12,73.67,5.73,1001.19,3,63.79,127.58,44.65,63.79,95.69,8.34,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN218,Synthetic Company 218,Health Care,48.97,2.05,87.01,0.93,323.54,2,70.04,140.08,49.03,70.04,105.06,12.27,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN219,Synthetic Company 219,Information Technology,50.75,3.38,77.29,3.15,776.95,3,67.4,134.79,47.18,67.4,101.1,7.67,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN220,Synthetic Company 220,Consumer Staples,49.48,1.21,89.78,4.92,2295.2,4,70.83,141.66,49.58,70.83,106.25,13.31,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN221,Synthetic Company 221,Health Care,49.94,2.99,74.06,0.83,411.73,2,64.98,129.97,45.49,64.98,97.47,8.28,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN222,Synthetic Company 222,Health Care,51.64,3.39,82.01,10.86,5047.97,5,70.21,140.42,49.15,70.21,105.32,11.31,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN223,Synthetic Company 223,Industrials,47.22,2.34,72.82,8.49,739.78,3,62.36,124.72,43.65,62.36,93.54,9.41,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN224,Synthetic Company 224,Utilities,56.2,4.08,97.04,3.6,355.06,2,80.71,161.41,56.49,80.71,121.06,11.22,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN225,Synthetic Company 225,Communication Services,46.67,1.43,70.02,17.42,5910.56,5,59.77,119.54,41.84,59.77,89.66,8.98,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN226,Synthetic Company 226,Real Estate,46.22,1.3,82.27,2.86,1259.5,3,65.54,131.09,45.88,65.54,98.32,9.7,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN227,Synthetic Company 227,Utilities,53.16,3.91,84.59,21.06,4859.4,5,72.79,145.58,50.95,72.79,109.18,10.15,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN228,Synthetic Company 228,Financials,52.26,2.98,83.13,5.64,2136.27,4,70.68,141.36,49.48,70.68,106.02,8.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN229,Synthetic Company 229,Information Technology,51.74,3.75,78.31,5.18,1077.94,3,68.78,137.55,48.14,68.78,103.16,11.51,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN230,Synthetic Company 230,Health Care,51.86,2.74,78.92,0.93,121.44,1,68.13,136.26,47.69,68.13,102.2,8.98,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN231,Synthetic Company 231,Consumer Staples,49.8,1.99,80.1,10.86,1952.9,4,66.93,133.87,46.85,66.93,100.4,9.58,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN232,Synthetic Company 232,Financials,47.04,4.28,78.41,3.08,308.3,2,67.01,134.01,46.9,67.01,100.51,8.07,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN233,Synthetic Company 233,Information Technology,49.95,4.2,87.27,1.2,353.76,2,72.81,145.61,50.96,72.81,109.21,5.0,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN234,Synthetic Company 234,Industrials,47.85,3.78,97.5,0.19,27.12,1,76.45,152.91,53.52,76.45,114.68,9.64,1.5,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN235,Synthetic Company 235,Consumer Staples,52.91,2.09,75.52,4.12,1208.05,3,66.31,132.61,46.41,66.31,99.46,14.83,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN236,Synthetic Company 236,Real Estate,49.22,3.36,68.52,4.12,758.64,3,62.23,124.47,43.56,62.23,93.35,11.64,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN237,Synthetic Company 237,Industrials,47.48,2.44,79.23,6.4,2727.98,5,65.8,131.6,46.06,65.8,98.7,9.97,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN238,Synthetic Company 238,Energy,48.88,1.37,100.4,11.22,4516.59,5,76.01,152.02,53.21,76.01,114.02,9.51,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN239,Synthetic Company 239,Communication Services,51.15,4.67,73.44,0.51,187.0,1,66.96,133.93,46.87,66.96,100.44,10.06,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN240,Synthetic Company 240,Health Care,48.06,1.55,92.73,6.85,2417.13,4,71.95,143.89,50.36,71.95,107.92,11.15,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN241,Synthetic Company 241,Consumer Discretionary,47.44,4.8,93.27,1.14,212.62,1,75.16,150.31,52.61,75.16,112.74,7.66,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN242,Synthetic Company 242,Materials,50.38,2.78,75.03,10.15,3045.41,5,65.49,130.99,45.85,65.49,98.24,12.31,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN243,Synthetic Company 243,Energy,50.56,1.74,84.28,8.74,4150.32,5,69.16,138.32,48.41,69.16,103.74,11.47,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN244,Synthetic Company 244,Real Estate,48.43,3.17,92.95,3.95,270.06,1,73.85,147.71,51.7,73.85,110.78,11.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN245,Synthetic Company 245,Information Technology,48.31,4.49,76.54,6.5,1980.26,4,66.92,133.83,46.84,66.92,100.37,10.94,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN246,Synthetic Company 246,Consumer Discretionary,50.43,3.93,77.96,2.18,1009.64,3,68.12,136.25,47.69,68.12,102.19,10.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN247,Synthetic Company 247,Energy,45.6,4.23,75.26,3.25,963.76,3,64.65,129.31,45.26,64.65,96.98,11.36,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN248,Synthetic Company 248,Real Estate,45.62,3.64,71.63,8.8,3286.24,5,62.26,124.52,43.58,62.26,93.39,11.22,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN249,Synthetic Company 249,Energy,47.49,3.77,74.26,3.47,819.35,3,64.64,129.29,45.25,64.64,96.97,9.37,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN250,Synthetic Company 250,Communication Services,49.3,4.4,70.11,2.28,249.89,1,64.1,128.2,44.87,64.1,96.15,8.87,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN251,Synthetic Company 251,Consumer Staples,50.81,2.0,80.08,3.55,601.39,2,67.44,134.88,47.21,67.44,101.16,10.23,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN252,Synthetic Company 252,Financials,54.19,2.96,73.48,9.07,1831.84,4,66.8,133.59,46.76,66.8,100.19,13.15,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN253,Synthetic Company 253,Communication Services,52.5,1.88,81.75,2.13,847.1,3,69.01,138.01,48.31,69.01,103.51,7.54,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN254,Synthetic Company 254,Real Estate,49.48,4.95,67.49,1.0,219.37,1,63.43,126.87,44.4,63.43,95.15,7.07,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN255,Synthetic Company 255,Real Estate,49.59,4.78,82.1,6.61,1610.97,4,70.62,141.24,49.44,70.62,105.93,10.41,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN256,Synthetic Company 256,Materials,46.64,1.16,86.12,9.13,2755.86,5,67.54,135.08,47.28,67.54,101.31,10.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN257,Synthetic Company 257,Materials,49.89,3.82,63.97,0.59,61.66,1,60.75,121.5,42.53,60.75,91.13,10.36,0.6,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN258,Synthetic Company 258,Consumer Staples,48.97,4.7,82.74,1.55,710.79,3,70.56,141.12,49.39,70.56,105.84,10.52,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN259,Synthetic Company 259,Information Technology,50.75,1.72,89.48,1.01,327.04,2,71.83,143.67,50.28,71.83,107.75,9.6,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN260,Synthetic Company 260,Health Care,47.32,3.27,70.02,2.36,1150.21,3,61.94,123.88,43.36,61.94,92.91,13.02,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN261,Synthetic Company 261,Utilities,51.35,4.66,93.05,3.23,1398.01,4,76.86,153.72,53.8,76.86,115.29,6.85,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN262,Synthetic Company 262,Energy,54.48,1.14,83.18,7.03,1187.16,3,69.97,139.93,48.98,69.97,104.95,8.37,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN263,Synthetic Company 263,Consumer Staples,49.59,3.79,74.24,5.35,2414.83,4,65.71,131.41,45.99,65.71,98.56,9.81,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN264,Synthetic Company 264,Information Technology,51.06,2.19,79.33,5.01,2111.74,4,67.39,134.77,47.17,67.39,101.08,6.75,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN265,Synthetic Company 265,Financials,51.96,4.7,84.29,2.3,832.87,3,72.82,145.65,50.98,72.82,109.24,9.67,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN266,Synthetic Company 266,Health Care,48.59,4.88,80.29,9.43,2367.24,4,69.33,138.65,48.53,69.33,103.99,13.37,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN267,Synthetic Company 267,Industrials,50.61,4.78,84.22,3.25,348.96,2,72.19,144.39,50.54,72.19,108.29,10.05,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN268,Synthetic Company 268,Consumer Staples,49.75,2.9,72.19,19.66,2962.84,5,63.87,127.73,44.71,63.87,95.8,10.53,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN269,Synthetic Company 269,Financials,50.09,4.45,81.04,5.25,2122.9,4,70.02,140.03,49.01,70.02,105.02,7.52,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN270,Synthetic Company 270,Consumer Staples,47.36,4.38,68.19,1.03,449.36,2,62.16,124.31,43.51,62.16,93.23,8.84,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN271,Synthetic Company 271,Energy,49.86,2.28,78.78,5.87,832.89,3,66.6,133.2,46.62,66.6,99.9,9.3,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN272,Synthetic Company 272,Consumer Staples,51.3,4.32,72.47,2.18,666.11,2,66.2,132.4,46.34,66.2,99.3,9.41,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN273,Synthetic Company 273,Utilities,54.14,1.15,73.78,6.04,2692.69,5,65.11,130.21,45.57,65.11,97.66,12.61,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN274,Synthetic Company 274,Energy,52.57,3.39,89.41,0.7,347.05,2,74.38,148.75,52.06,74.38,111.56,11.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN275,Synthetic Company 275,Energy,56.14,1.92,88.24,1.31,276.47,1,74.11,148.22,51.88,74.11,111.17,7.85,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN276,Synthetic Company 276,Communication Services,47.62,1.48,84.75,9.77,1569.6,4,67.67,135.34,47.37,67.67,101.5,10.51,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN277,Synthetic Company 277,Health Care,52.38,1.31,70.89,1.56,580.86,2,62.94,125.88,44.06,62.94,94.41,11.05,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN278,Synthetic Company 278,Communication Services,50.5,3.79,77.4,9.12,4020.18,5,67.74,135.47,47.42,67.74,101.6,12.29,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN279,Synthetic Company 279,Health Care,56.22,2.36,89.17,2.02,647.11,2,75.05,150.11,52.54,75.05,112.58,13.24,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN280,Synthetic Company 280,Materials,47.26,3.9,80.64,5.5,1068.01,3,67.85,135.7,47.5,67.85,101.78,8.04,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN281,Synthetic Company 281,Consumer Staples,47.16,1.26,98.06,6.27,1165.19,3,73.87,147.75,51.71,73.87,110.81,8.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN282,Synthetic Company 282,Utilities,47.87,2.26,82.64,3.96,496.24,2,67.52,135.03,47.26,67.52,101.27,7.56,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN283,Synthetic Company 283,Real Estate,43.33,3.16,81.07,2.15,161.0,1,65.36,130.72,45.75,65.36,98.04,9.6,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN284,Synthetic Company 284,Energy,48.08,4.16,77.0,1.57,635.79,2,66.7,133.4,46.69,66.7,100.05,11.01,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN285,Synthetic Company 285,Information Technology,47.71,2.28,81.06,0.18,26.41,1,66.66,133.32,46.66,66.66,99.99,11.98,1.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN286,Synthetic Company 286,Energy,50.21,3.5,78.41,2.08,299.0,2,67.81,135.62,47.47,67.81,101.72,9.9,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN287,Synthetic Company 287,Industrials,50.71,4.54,85.17,5.65,2781.63,5,72.48,144.97,50.74,72.48,108.72,9.43,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN288,Synthetic Company 288,Real Estate,55.56,3.46,87.55,14.0,2109.85,4,75.02,150.04,52.52,75.02,112.53,10.32,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN289,Synthetic Company 289,Materials,52.5,1.93,73.17,10.63,813.77,3,64.77,129.54,45.34,64.77,97.15,8.41,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN290,Synthetic Company 290,Consumer Discretionary,48.17,1.1,69.19,7.38,2110.4,4,59.77,119.55,41.84,59.77,89.66,14.2,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN291,Synthetic Company 291,Utilities,46.99,4.48,64.82,8.12,966.65,3,60.38,120.77,42.27,60.38,90.58,6.85,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN292,Synthetic Company 292,Real Estate,51.42,1.09,83.98,5.52,2497.35,5,68.79,137.58,48.15,68.79,103.18,10.38,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN293,Synthetic Company 293,Industrials,45.81,4.5,70.82,1.76,542.52,2,62.81,125.63,43.97,62.81,94.22,14.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN294,Synthetic Company 294,Utilities,55.43,3.12,62.67,11.96,5488.52,5,62.17,124.33,43.52,62.17,93.25,10.03,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN295,Synthetic Company 295,Real Estate,53.39,4.76,82.88,5.72,1538.07,4,72.89,145.79,51.03,72.89,109.34,9.65,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN296,Synthetic Company 296,Health Care,48.23,4.2,99.38,4.52,489.95,2,78.0,155.99,54.6,78.0,117.0,9.37,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN297,Synthetic Company 297,Communication Services,44.77,4.99,79.81,0.69,143.02,1,67.28,134.56,47.1,67.28,100.92,9.66,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN298,Synthetic Company 298,Energy,53.93,2.4,86.5,3.11,1136.48,3,72.62,145.23,50.83,72.62,108.92,12.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN299,Synthetic Company 299,Consumer Staples,49.44,4.07,80.32,3.32,825.93,3,68.95,137.9,48.26,68.95,103.42,5.62,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN300,Synthetic Company 300,Energy,53.66,2.61,79.13,10.05,2535.28,5,69.0,138.01,48.3,69.0,103.51,13.08,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN301,Synthetic Company 301,Real Estate,45.01,2.92,87.03,4.18,409.01,2,68.94,137.88,48.26,68.94,103.41,7.2,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN302,Synthetic Company 302,Consumer Discretionary,47.88,3.51,77.18,2.75,1316.68,4,66.04,132.08,46.23,66.04,99.06,9.54,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN303,Synthetic Company 303,Materials,49.78,4.49,81.77,19.08,4725.26,5,70.27,140.54,49.19,70.27,105.4,9.19,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN304,Synthetic Company 304,Utilities,50.01,4.94,82.37,0.73,160.31,1,71.12,142.25,49.79,71.12,106.68,11.21,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN305,Synthetic Company 305,Materials,48.48,4.07,74.38,2.94,165.94,1,65.5,131.0,45.85,65.5,98.25,6.84,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN306,Synthetic Company 306,Health Care,51.87,2.67,87.94,0.21,104.0,1,72.57,145.15,50.8,72.57,108.86,10.92,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN307,Synthetic Company 307,Industrials,46.76,2.69,78.54,6.78,1158.79,3,65.33,130.67,45.73,65.33,98.0,14.06,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN308,Synthetic Company 308,Materials,49.21,3.95,73.38,12.92,5156.61,5,65.25,130.49,45.67,65.25,97.87,7.36,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN309,Synthetic Company 309,Utilities,50.16,1.96,83.98,1.86,114.8,1,69.03,138.06,48.32,69.03,103.54,10.42,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN310,Synthetic Company 310,Energy,51.26,1.44,72.38,10.08,4104.65,5,63.26,126.53,44.28,63.26,94.9,8.74,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN311,Synthetic Company 311,Consumer Staples,51.87,2.42,79.82,2.02,864.16,3,68.26,136.52,47.78,68.26,102.39,10.91,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN312,Synthetic Company 312,Utilities,46.44,2.15,79.64,12.29,1550.68,4,65.19,130.38,45.63,65.19,97.78,10.08,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN313,Synthetic Company 313,Real Estate,45.04,2.19,88.13,7.41,288.47,2,68.77,137.54,48.14,68.77,103.15,8.8,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN314,Synthetic Company 314,Real Estate,53.48,1.93,83.25,8.56,913.47,3,70.3,140.6,49.21,70.3,105.45,11.05,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN315,Synthetic Company 315,Communication Services,50.65,1.17,79.26,0.48,17.36,1,66.12,132.24,46.28,66.12,99.18,13.69,1.7,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN316,Synthetic Company 316,Communication Services,47.64,1.07,86.37,16.58,7690.09,5,68.08,136.15,47.65,68.08,102.11,9.64,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN317,Synthetic Company 317,Health Care,54.29,4.95,90.56,6.89,1704.91,4,77.38,154.76,54.17,77.38,116.07,11.52,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN318,Synthetic Company 318,Consumer Discretionary,50.17,2.71,84.19,2.01,544.13,2,69.89,139.79,48.93,69.89,104.84,7.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN319,Synthetic Company 319,Consumer Staples,53.29,2.54,79.7,9.12,1778.3,4,69.03,138.06,48.32,69.03,103.55,8.14,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN320,Synthetic Company 320,Health Care,49.94,3.72,69.09,1.95,356.68,2,63.23,126.47,44.26,63.23,94.85,11.0,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN321,Synthetic Company 321,Consumer Staples,56.16,1.87,71.44,10.33,1770.78,4,65.67,131.35,45.97,65.67,98.51,12.97,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN322,Synthetic Company 322,Information Technology,54.96,4.8,77.09,0.93,161.19,1,70.83,141.65,49.58,70.83,106.24,10.78,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN323,Synthetic Company 323,Health Care,48.92,4.15,74.6,6.46,2037.82,4,65.9,131.81,46.13,65.9,98.85,9.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN324,Synthetic Company 324,Health Care,52.74,1.36,78.23,4.09,2023.7,4,66.84,133.69,46.79,66.84,100.26,10.04,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN325,Synthetic Company 325,Materials,51.87,2.67,80.34,0.59,119.58,1,68.78,137.55,48.14,68.78,103.16,7.51,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN326,Synthetic Company 326,Financials,53.73,4.52,83.65,1.81,340.36,2,73.2,146.4,51.24,73.2,109.8,11.29,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN327,Synthetic Company 327,Information Technology,47.09,4.78,79.42,0.1,25.03,1,68.03,136.06,47.62,68.03,102.05,11.77,1.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN328,Synthetic Company 328,Energy,51.68,2.87,83.31,3.58,1391.57,4,70.37,140.73,49.26,70.37,105.55,9.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN329,Synthetic Company 329,Utilities,53.02,3.45,80.27,1.97,736.95,3,70.09,140.19,49.07,70.09,105.14,9.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN330,Synthetic Company 330,Information Technology,44.55,1.67,63.92,4.76,773.51,3,55.9,111.8,39.13,55.9,83.85,10.57,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN331,Synthetic Company 331,Health Care,46.18,4.96,72.06,2.07,625.63,2,64.08,128.17,44.86,64.08,96.13,9.19,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN332,Synthetic Company 332,Information Technology,43.51,1.93,78.26,2.2,495.95,2,62.81,125.62,43.97,62.81,94.22,9.95,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN333,Synthetic Company 333,Information Technology,48.93,4.77,69.92,7.08,883.89,3,64.2,128.39,44.94,64.2,96.3,14.26,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN334,Synthetic Company 334,Real Estate,51.85,3.6,84.33,0.58,36.45,1,71.69,143.38,50.18,71.69,107.54,9.57,1.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN335,Synthetic Company 335,Industrials,54.17,3.43,91.73,12.03,5696.76,5,76.38,152.76,53.47,76.38,114.57,9.36,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN336,Synthetic Company 336,Materials,49.99,3.05,89.39,9.82,983.83,3,72.74,145.48,50.92,72.74,109.11,8.76,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN337,Synthetic Company 337,Consumer Discretionary,54.8,1.92,78.16,5.61,2649.6,5,68.4,136.8,47.88,68.4,102.6,11.51,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN338,Synthetic Company 338,Industrials,45.54,1.71,91.43,4.85,377.07,2,70.19,140.39,49.14,70.19,105.29,9.71,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN339,Synthetic Company 339,Materials,44.74,1.88,80.96,11.3,425.39,2,64.74,129.47,45.31,64.74,97.1,8.73,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN340,Synthetic Company 340,Real Estate,49.52,1.75,76.81,1.37,555.8,2,64.91,129.82,45.44,64.91,97.37,12.71,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN341,Synthetic Company 341,Industrials,51.07,4.12,74.97,0.5,134.95,1,67.14,134.27,47.0,67.14,100.7,12.86,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN342,Synthetic Company 342,Consumer Discretionary,49.7,2.4,77.27,1.59,230.52,1,65.89,131.77,46.12,65.89,98.83,8.84,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN343,Synthetic Company 343,Financials,43.61,1.23,76.6,8.12,4046.17,5,61.34,122.68,42.94,61.34,92.01,6.31,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN344,Synthetic Company 344,Financials,49.56,4.88,81.09,0.37,118.7,1,70.2,140.4,49.14,70.2,105.3,12.05,0.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN345,Synthetic Company 345,Utilities,45.75,4.54,80.75,4.75,2056.01,4,67.79,135.57,47.45,67.79,101.68,8.71,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN346,Synthetic Company 346,Materials,51.86,4.71,79.79,27.11,4094.84,5,70.54,141.08,49.38,70.54,105.81,11.61,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN347,Synthetic Company 347,Utilities,50.74,4.98,82.93,10.08,4374.54,5,71.81,143.62,50.27,71.81,107.72,6.14,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN348,Synthetic Company 348,Utilities,46.93,1.7,89.14,3.96,1126.84,3,69.73,139.46,48.81,69.73,104.59,11.84,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN349,Synthetic Company 349,Materials,48.3,2.58,87.36,0.5,99.67,1,70.41,140.83,49.29,70.41,105.62,7.61,0.5,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN350,Synthetic Company 350,Energy,46.55,4.03,67.69,9.21,2375.43,4,61.15,122.31,42.81,61.15,91.73,11.52,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN351,Synthetic Company 351,Industrials,49.73,3.78,59.44,4.66,1621.91,4,58.37,116.74,40.86,58.37,87.55,10.05,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN352,Synthetic Company 352,Communication Services,52.54,1.62,86.97,0.97,250.12,1,71.37,142.74,49.96,71.37,107.06,8.16,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN353,Synthetic Company 353,Financials,46.83,4.26,68.73,0.73,248.04,1,62.04,124.08,43.43,62.04,93.06,9.23,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN354,Synthetic Company 354,Energy,51.18,1.9,77.69,12.38,4610.61,5,66.33,132.67,46.43,66.33,99.5,11.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN355,Synthetic Company 355,Energy,48.08,1.9,70.12,5.9,812.46,3,61.0,121.99,42.7,61.0,91.5,10.29,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN356,Synthetic Company 356,Materials,47.56,3.15,65.49,8.91,1605.95,4,59.67,119.35,41.77,59.67,89.51,11.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN357,Synthetic Company 357,Utilities,49.42,3.37,83.93,10.85,3437.65,5,70.05,140.09,49.03,70.05,105.07,14.01,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN358,Synthetic Company 358,Industrials,46.83,3.32,85.98,4.31,1907.14,4,69.73,139.46,48.81,69.73,104.59,6.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN359,Synthetic Company 359,Real Estate,48.33,1.37,75.37,3.65,1521.8,4,63.22,126.43,44.25,63.22,94.82,13.24,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN360,Synthetic Company 360,Real Estate,46.28,4.51,59.07,2.96,1113.91,3,57.19,114.37,40.03,57.19,85.78,10.24,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN361,Synthetic Company 361,Health Care,55.68,2.06,75.3,2.14,820.38,3,67.55,135.11,47.29,67.55,101.33,8.25,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN362,Synthetic Company 362,Consumer Staples,50.0,1.52,82.97,2.97,939.49,3,68.0,136.0,47.6,68.0,102.0,7.36,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN363,Synthetic Company 363,Information Technology,47.66,4.55,67.79,7.7,1114.32,3,62.28,124.57,43.6,62.28,93.42,9.68,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN364,Synthetic Company 364,Energy,50.34,4.82,81.0,4.94,352.15,2,70.5,141.0,49.35,70.5,105.75,11.91,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN365,Synthetic Company 365,Consumer Staples,49.5,4.45,79.62,11.33,4797.57,5,69.01,138.02,48.31,69.01,103.51,9.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN366,Synthetic Company 366,Communication Services,49.04,4.24,84.17,3.26,337.41,2,70.84,141.68,49.59,70.84,106.26,13.09,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN367,Synthetic Company 367,Consumer Discretionary,51.48,3.62,80.4,5.07,506.48,2,69.56,139.12,48.69,69.56,104.34,7.18,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN368,Synthetic Company 368,Industrials,52.05,3.2,71.87,5.24,973.84,3,65.16,130.33,45.62,65.16,97.75,10.03,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN369,Synthetic Company 369,Real Estate,48.39,1.35,89.55,4.5,1971.27,4,70.32,140.63,49.22,70.32,105.48,7.5,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN370,Synthetic Company 370,Consumer Discretionary,48.22,2.63,78.66,6.12,2349.17,4,66.07,132.15,46.25,66.07,99.11,10.74,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN371,Synthetic Company 371,Consumer Staples,49.17,2.49,79.77,1.36,239.11,1,66.96,133.92,46.87,66.96,100.44,11.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN372,Synthetic Company 372,Financials,42.83,2.04,72.13,3.88,908.03,3,59.52,119.04,41.66,59.52,89.28,9.22,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN373,Synthetic Company 373,Health Care,45.09,3.89,75.89,0.95,65.61,1,64.39,128.78,45.07,64.39,96.58,5.0,1.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN374,Synthetic Company 374,Utilities,53.9,2.98,72.61,2.65,1103.3,3,66.24,132.48,46.37,66.24,99.36,10.44,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN375,Synthetic Company 375,Materials,54.64,1.32,78.16,3.67,478.78,2,67.72,135.45,47.41,67.72,101.59,10.94,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN376,Synthetic Company 376,Materials,48.92,1.88,93.18,5.65,2724.51,5,72.93,145.86,51.05,72.93,109.4,10.88,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN377,Synthetic Company 377,Energy,51.45,3.73,68.59,15.34,7004.44,5,63.75,127.51,44.63,63.75,95.63,12.53,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN378,Synthetic Company 378,Communication Services,50.57,1.3,66.52,5.0,1923.43,4,59.85,119.7,41.89,59.85,89.77,7.94,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN379,Synthetic Company 379,Communication Services,59.12,4.4,91.59,6.94,1206.62,3,79.76,159.51,55.83,79.76,119.64,11.39,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN380,Synthetic Company 380,Industrials,53.07,2.98,77.88,3.84,446.6,2,68.46,136.92,47.92,68.46,102.69,12.45,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN381,Synthetic Company 381,Information Technology,49.34,2.92,74.22,5.33,1546.18,4,64.71,129.41,45.29,64.71,97.06,6.5,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN382,Synthetic Company 382,Materials,47.06,3.37,88.2,0.45,28.9,1,71.0,142.0,49.7,71.0,106.5,10.66,1.3,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN383,Synthetic Company 383,Energy,45.01,4.3,74.89,1.66,455.6,2,64.25,128.49,44.97,64.25,96.37,9.03,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN384,Synthetic Company 384,Consumer Staples,50.31,2.39,94.14,2.58,416.39,2,74.61,149.23,52.23,74.61,111.92,9.9,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN385,Synthetic Company 385,Energy,47.36,3.71,84.85,3.61,393.3,2,69.82,139.64,48.87,69.82,104.73,10.78,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN386,Synthetic Company 386,Utilities,45.69,3.26,76.03,0.28,22.62,1,64.12,128.24,44.89,64.12,96.18,9.04,2.0,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN387,Synthetic Company 387,Consumer Discretionary,47.85,2.07,96.93,0.99,127.01,1,74.46,148.91,52.12,74.46,111.68,8.7,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN388,Synthetic Company 388,Industrials,46.63,4.51,74.96,1.76,533.18,2,65.31,130.62,45.72,65.31,97.97,10.1,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN389,Synthetic Company 389,Energy,54.69,4.19,85.35,18.21,1671.81,4,74.21,148.42,51.95,74.21,111.31,7.91,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN390,Synthetic Company 390,Communication Services,52.39,3.63,81.99,2.3,482.73,2,70.82,141.64,49.58,70.82,106.23,7.89,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN391,Synthetic Company 391,Industrials,49.73,4.4,90.02,3.57,1367.59,4,74.28,148.56,51.99,74.28,111.42,11.41,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN392,Synthetic Company 392,Industrials,54.43,4.47,92.47,1.11,277.51,1,77.92,155.83,54.54,77.92,116.88,7.71,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN393,Synthetic Company 393,Energy,50.14,3.83,80.11,4.82,2379.03,4,68.96,137.92,48.27,68.96,103.44,11.35,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN394,Synthetic Company 394,Industrials,47.34,4.35,73.85,1.74,322.96,2,64.94,129.88,45.46,64.94,97.41,10.94,0.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN395,Synthetic Company 395,Energy,54.21,3.79,83.12,1.56,85.32,1,72.46,144.91,50.72,72.46,108.68,6.63,0.7,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN396,Synthetic Company 396,Information Technology,51.28,3.72,74.06,4.01,238.88,1,66.39,132.78,46.47,66.39,99.58,8.72,0.2,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN397,Synthetic Company 397,Consumer Discretionary,46.74,3.47,95.87,0.2,16.33,1,74.78,149.56,52.35,74.78,112.17,12.42,2.0,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN398,Synthetic Company 398,Consumer Staples,49.17,4.01,80.68,0.33,133.44,1,68.94,137.87,48.26,68.94,103.4,8.1,0.4,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN399,Synthetic Company 399,Health Care,47.31,1.63,76.98,1.31,91.7,1,63.78,127.56,44.65,63.78,95.67,9.09,0.5,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
+SYN400,Synthetic Company 400,Materials,45.58,4.52,81.06,0.49,17.08,1,67.84,135.69,47.49,67.84,101.77,10.98,2.1,TCOST_MARKET_IMPACT_V1,Market Impact Transaction Cost Model,2025-12-05
