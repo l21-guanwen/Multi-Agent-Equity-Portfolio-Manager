@@ -1,9 +1,9 @@
 """Benchmark domain models."""
 
 from datetime import date
-from typing import Optional
+from typing import Any, Optional
 
-from pydantic import BaseModel, Field, computed_field
+from pydantic import BaseModel, Field, computed_field, field_validator
 
 
 class BenchmarkConstituent(BaseModel):
@@ -20,6 +20,14 @@ class BenchmarkConstituent(BaseModel):
     security_id: Optional[str] = Field(None, description="Unique security identifier")
     isin: Optional[str] = Field(None, description="International Security ID (ISIN)")
     cusip: Optional[str] = Field(None, description="CUSIP identifier")
+
+    @field_validator("security_id", "isin", "cusip", mode="before")
+    @classmethod
+    def coerce_to_string(cls, v: Any) -> Optional[str]:
+        """Coerce numeric identifiers to strings."""
+        if v is None:
+            return None
+        return str(v)
     
     # Benchmark Info
     benchmark_id: str = Field(default="SPX", description="Benchmark identifier")

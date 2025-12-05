@@ -96,13 +96,20 @@ class CSVLoader:
         # Combine date column parameters
         dates_to_parse = parse_dates or date_columns or []
         
-        # Default date columns if not specified
+        # First, read the header to check which columns exist
+        header_df = pd.read_csv(file_path, nrows=0)
+        existing_columns = set(header_df.columns.str.strip())
+        
+        # Default date columns if not specified - filter to only existing columns
         if not dates_to_parse:
-            dates_to_parse = ["As_Of_Date", "as_of_date"]
+            default_dates = ["As_Of_Date", "as_of_date"]
+            dates_to_parse = [c for c in default_dates if c in existing_columns]
+        else:
+            dates_to_parse = [c for c in dates_to_parse if c in existing_columns]
         
         df = pd.read_csv(
             file_path,
-            parse_dates=[c for c in dates_to_parse if c],
+            parse_dates=dates_to_parse if dates_to_parse else False,
         )
         
         # Normalize column names (strip whitespace)
