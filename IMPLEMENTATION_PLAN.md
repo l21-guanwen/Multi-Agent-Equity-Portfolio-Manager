@@ -440,15 +440,15 @@ class Settings(BaseSettings):
 | 5.2 | scipy solver (alternative) | `app/solvers/scipy_solver.py` | ✅ Done |
 | 5.3 | Solver factory | `app/solvers/factory.py` | ✅ Done |
 
-### Phase 6: Business Services
+### Phase 6: Business Services ✅ COMPLETE
 
 | # | Task | File(s) | Status |
 |---|------|---------|--------|
-| 6.1 | Data service | `app/services/data_service.py` | ⬜ Pending |
-| 6.2 | Alpha service | `app/services/alpha_service.py` | ⬜ Pending |
-| 6.3 | Risk service | `app/services/risk_service.py` | ⬜ Pending |
-| 6.4 | Optimization service | `app/services/optimization_service.py` | ⬜ Pending |
-| 6.5 | Compliance service | `app/services/compliance_service.py` | ⬜ Pending |
+| 6.1 | Data service | `app/services/data_service.py` | ✅ Done |
+| 6.2 | Alpha service | `app/services/alpha_service.py` | ✅ Done |
+| 6.3 | Risk service | `app/services/risk_service.py` | ✅ Done |
+| 6.4 | Optimization service | `app/services/optimization_service.py` | ✅ Done |
+| 6.5 | Compliance service | `app/services/compliance_service.py` | ✅ Done |
 
 ### Phase 7: LangGraph Agents
 
@@ -806,12 +806,12 @@ Test data files in `testdata/` folder:
 | 3 | LLM Providers | ✅ Complete | 4/4 |
 | 4 | Data Layer (CSV) | ✅ Complete | 7/7 |
 | 5 | Solvers | ✅ Complete | 3/3 |
-| 6 | Business Services | ⬜ Not Started | 0/5 |
+| 6 | Business Services | ✅ Complete | 5/5 |
 | 7 | LangGraph Agents | ⬜ Not Started | 0/7 |
 | 8 | API Layer | ⬜ Not Started | 0/8 |
 | 9 | Testing | ⬜ Not Started | 0/5 |
 
-**Overall Progress:** 30/55 tasks completed
+**Overall Progress:** 35/55 tasks completed
 
 ---
 
