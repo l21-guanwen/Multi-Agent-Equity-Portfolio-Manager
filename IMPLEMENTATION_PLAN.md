@@ -450,17 +450,17 @@ class Settings(BaseSettings):
 | 6.4 | Optimization service | `app/services/optimization_service.py` | ✅ Done |
 | 6.5 | Compliance service | `app/services/compliance_service.py` | ✅ Done |
 
-### Phase 7: LangGraph Agents
+### Phase 7: LangGraph Agents ✅ COMPLETE
 
 | # | Task | File(s) | Status |
 |---|------|---------|--------|
-| 7.1 | Portfolio state definition | `app/agents/state.py` | ⬜ Pending |
-| 7.2 | Data agent | `app/agents/data_agent.py` | ⬜ Pending |
-| 7.3 | Alpha agent | `app/agents/alpha_agent.py` | ⬜ Pending |
-| 7.4 | Risk agent | `app/agents/risk_agent.py` | ⬜ Pending |
-| 7.5 | Optimization agent | `app/agents/optimization_agent.py` | ⬜ Pending |
-| 7.6 | Compliance agent | `app/agents/compliance_agent.py` | ⬜ Pending |
-| 7.7 | LangGraph StateGraph | `app/agents/graph.py` | ⬜ Pending |
+| 7.1 | Portfolio state definition | `app/agents/state.py` | ✅ Done |
+| 7.2 | Data agent | `app/agents/data_agent.py` | ✅ Done |
+| 7.3 | Alpha agent | `app/agents/alpha_agent.py` | ✅ Done |
+| 7.4 | Risk agent | `app/agents/risk_agent.py` | ✅ Done |
+| 7.5 | Optimization agent | `app/agents/optimization_agent.py` | ✅ Done |
+| 7.6 | Compliance agent | `app/agents/compliance_agent.py` | ✅ Done |
+| 7.7 | LangGraph StateGraph | `app/agents/graph.py` | ✅ Done |
 
 ### Phase 8: API Layer
 
@@ -807,11 +807,11 @@ Test data files in `testdata/` folder:
 | 4 | Data Layer (CSV) | ✅ Complete | 7/7 |
 | 5 | Solvers | ✅ Complete | 3/3 |
 | 6 | Business Services | ✅ Complete | 5/5 |
-| 7 | LangGraph Agents | ⬜ Not Started | 0/7 |
+| 7 | LangGraph Agents | ✅ Complete | 7/7 |
 | 8 | API Layer | ⬜ Not Started | 0/8 |
 | 9 | Testing | ⬜ Not Started | 0/5 |
 
-**Overall Progress:** 35/55 tasks completed
+**Overall Progress:** 42/55 tasks completed
 
 ---
 
