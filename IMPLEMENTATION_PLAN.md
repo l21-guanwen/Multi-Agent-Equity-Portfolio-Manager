@@ -432,13 +432,13 @@ class Settings(BaseSettings):
 | 4.6 | Constraint repository | `app/repositories/csv/csv_constraint_repository.py` | ✅ Done |
 | 4.7 | Transaction cost repository | `app/repositories/csv/csv_transaction_cost_repository.py` | ✅ Done |
 
-### Phase 5: Solvers
+### Phase 5: Solvers ✅ COMPLETE
 
 | # | Task | File(s) | Status |
 |---|------|---------|--------|
-| 5.1 | cvxpy solver (default) | `app/solvers/cvxpy_solver.py` | ⬜ Pending |
-| 5.2 | scipy solver (alternative) | `app/solvers/scipy_solver.py` | ⬜ Pending |
-| 5.3 | Solver factory | `app/solvers/factory.py` | ⬜ Pending |
+| 5.1 | cvxpy solver (default) | `app/solvers/cvxpy_solver.py` | ✅ Done |
+| 5.2 | scipy solver (alternative) | `app/solvers/scipy_solver.py` | ✅ Done |
+| 5.3 | Solver factory | `app/solvers/factory.py` | ✅ Done |
 
 ### Phase 6: Business Services
 
@@ -805,13 +805,13 @@ Test data files in `testdata/` folder:
 | 2 | Abstraction Interfaces | ✅ Complete | 5/5 |
 | 3 | LLM Providers | ✅ Complete | 4/4 |
 | 4 | Data Layer (CSV) | ✅ Complete | 7/7 |
-| 5 | Solvers | ⬜ Not Started | 0/3 |
+| 5 | Solvers | ✅ Complete | 3/3 |
 | 6 | Business Services | ⬜ Not Started | 0/5 |
 | 7 | LangGraph Agents | ⬜ Not Started | 0/7 |
 | 8 | API Layer | ⬜ Not Started | 0/8 |
 | 9 | Testing | ⬜ Not Started | 0/5 |
 
-**Overall Progress:** 27/55 tasks completed
+**Overall Progress:** 30/55 tasks completed
 
 ---
 
