@@ -44,7 +44,7 @@ class Settings(BaseSettings):
     # Data Source Configuration
     # ===========================================
     data_source: Literal["csv", "database", "api"] = "csv"
-    csv_data_path: str = "./tests/testdata"
+    csv_data_path: str = "./data"
     database_url: str = ""  # For future DB support
 
     # ===========================================

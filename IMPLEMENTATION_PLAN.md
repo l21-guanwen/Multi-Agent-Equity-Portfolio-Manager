@@ -77,7 +77,7 @@ project_root/
 ├── requirements.txt                           # Dependencies
 ├── .env.example                               # Environment variables template
 ├── IMPLEMENTATION_PLAN.md                     # This file
-├── tests/testdata/                            # Test CSV files (9 files)
+├── data/                                      # Input/reference data CSV files (9 files)
 │
 ├── app/
 │   ├── __init__.py
@@ -779,7 +779,7 @@ class PortfolioState(TypedDict):
 
 ## Data Files Reference
 
-Test data files in `tests/testdata/` folder:
+Reference data files in `data/` folder:
 
 | # | File | Description | Records | Key Columns |
 |---|------|-------------|---------|-------------|
@@ -824,7 +824,7 @@ If starting a new session, follow these steps:
 3. **Follow the phase order** (Phase 1 → 2 → 3 → etc.)
 4. **Update progress** after completing each task (change ⬜ to ✅)
 5. **Follow coding conventions** in `Linvest21_object_oriented_python_project_structure.md`
-6. **Reference test data** in `tests/testdata/` folder for schema validation
+6. **Reference input data** in `data/` folder for schema validation
 7. **Reference specification** in `Multi_Agent_Equity_PM_Specification.md` for business rules
 
 ---

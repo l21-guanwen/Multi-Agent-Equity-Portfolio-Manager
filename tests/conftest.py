@@ -49,8 +49,8 @@ from main import app
 
 @pytest.fixture(scope="session")
 def test_data_path() -> str:
-    """Get path to test data directory."""
-    return str(Path(__file__).parent / "testdata")
+    """Get path to data directory."""
+    return str(Path(__file__).parent.parent / "data")
 
 
 @pytest.fixture(scope="session")
