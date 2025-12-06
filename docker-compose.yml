@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  portfolio-manager:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: equity-portfolio-manager
+    ports:
+      - "${HOST_PORT:-8000}:8000"
+    environment:
+      # Application settings
+      - APP_NAME=${APP_NAME:-Multi-Agent Equity Portfolio Manager}
+      - DEBUG=${DEBUG:-false}
+      
+      # LLM Configuration
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4o}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      
+      # Data source
+      - DATA_SOURCE=${DATA_SOURCE:-csv}
+      - CSV_DATA_PATH=/app/data
+      
+      # Optimization
+      - SOLVER=${SOLVER:-cvxpy}
+      - RISK_AVERSION=${RISK_AVERSION:-0.01}
+      - TRANSACTION_COST_PENALTY=${TRANSACTION_COST_PENALTY:-0.0}
+      - MAX_ITERATIONS=${MAX_ITERATIONS:-5}
+      
+      # Portfolio parameters
+      - PORTFOLIO_SIZE=${PORTFOLIO_SIZE:-25}
+      - STOCK_ACTIVE_WEIGHT_LIMIT=${STOCK_ACTIVE_WEIGHT_LIMIT:-0.01}
+      - SECTOR_ACTIVE_WEIGHT_LIMIT=${SECTOR_ACTIVE_WEIGHT_LIMIT:-0.02}
+    volumes:
+      # Mount data folder for easy customization
+      - ./data:/app/data:ro
+      # Optional: Mount custom .env file
+      # - ./.env:/app/.env:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Development service with hot reload
+  portfolio-manager-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: equity-portfolio-manager-dev
+    ports:
+      - "${HOST_PORT:-8000}:8000"
+    environment:
+      - DEBUG=true
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4o}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - DATA_SOURCE=csv
+      - CSV_DATA_PATH=/app/data
+      - SOLVER=${SOLVER:-cvxpy}
+      - PORTFOLIO_SIZE=${PORTFOLIO_SIZE:-25}
+    volumes:
+      # Mount source code for hot reload
+      - ./app:/app/app:ro
+      - ./main.py:/app/main.py:ro
+      - ./data:/app/data:ro
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    profiles:
+      - dev
+

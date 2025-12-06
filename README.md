@@ -73,6 +73,89 @@ cp env.example .env
 # Edit .env with your API keys and settings
 ```
 
+## 🐳 Docker
+
+The easiest way to run the server is using Docker.
+
+### Quick Start with Docker
+
+```bash
+# Build and run
+docker compose up -d
+
+# Check logs
+docker compose logs -f
+
+# Stop
+docker compose down
+```
+
+### Using Docker with Custom Configuration
+
+```bash
+# Run with environment variables
+docker compose up -d \
+  -e LLM_PROVIDER=deepseek \
+  -e DEEPSEEK_API_KEY=your-key-here \
+  -e PORTFOLIO_SIZE=30
+
+# Or create a .env file first, then run
+cp env.example .env
+# Edit .env with your settings
+docker compose up -d
+```
+
+### Development Mode (Hot Reload)
+
+```bash
+# Start with hot reload (code changes reflect immediately)
+docker compose --profile dev up portfolio-manager-dev
+```
+
+### Docker Configuration Options
+
+| Environment Variable | Description | Default |
+|---------------------|-------------|---------|
+| `HOST_PORT` | Port to expose on host | 8000 |
+| `LLM_PROVIDER` | LLM provider (openai/deepseek/anthropic) | openai |
+| `LLM_MODEL` | Model name | gpt-4o |
+| `PORTFOLIO_SIZE` | Number of holdings | 25 |
+| `SOLVER` | Optimization solver | cvxpy |
+| `RISK_AVERSION` | Risk penalty (higher = more conservative) | 0.01 |
+
+### Custom Data with Docker
+
+Mount your own data folder:
+
+```bash
+# Use a custom data directory
+docker run -d \
+  -p 8000:8000 \
+  -v /path/to/your/data:/app/data:ro \
+  -e DEEPSEEK_API_KEY=your-key \
+  equity-portfolio-manager
+```
+
+### Build Manually
+
+```bash
+# Build the image
+docker build -t equity-portfolio-manager .
+
+# Run the container
+docker run -d \
+  --name portfolio-manager \
+  -p 8000:8000 \
+  -e LLM_PROVIDER=deepseek \
+  -e DEEPSEEK_API_KEY=your-key-here \
+  -v $(pwd)/data:/app/data:ro \
+  equity-portfolio-manager
+
+# Access the API
+curl http://localhost:8000/health
+curl http://localhost:8000/docs  # Interactive API documentation
+```
+
 ## ⚙️ Configuration
 
 ### Environment Variables (`.env`)
@@ -135,18 +218,22 @@ The system reads input data from CSV files in the `data/` folder. **You can cust
 
 ### Customizing Data
 
-All CSV files in the `data/` folder can be replaced with your own data. Below are examples for each file:
+All 9 CSV files in the `data/` folder can be replaced with your own data. Below are examples for each:
 
-#### 1. Benchmark Constituents (`01_SP500_Benchmark_Constituency.csv`)
-Define your benchmark index (e.g., S&P 500, Russell 1000, custom index):
+---
+
+#### 1. Benchmark (`01_SP500_Benchmark_Constituency.csv`)
+Define your benchmark index (S&P 500, Russell 1000, custom):
 ```csv
-Ticker,Security_Name,GICS_Sector,GICS_Industry,Benchmark_Weight_Pct,Price,As_Of_Date,Benchmark_ID
-AAPL,Apple Inc.,Information Technology,Technology Hardware,6.5,180.00,2025-01-15,SPX
-MSFT,Microsoft,Information Technology,Software,5.8,400.00,2025-01-15,SPX
-JPM,JPMorgan Chase,Financials,Banks,2.1,180.00,2025-01-15,SPX
+Ticker,Security_Name,GICS_Sector,GICS_Industry,Benchmark_Weight_Pct,Price,As_Of_Date
+AAPL,Apple Inc.,Information Technology,Technology Hardware,6.5,180.00,2025-01-15
+MSFT,Microsoft,Information Technology,Software,5.8,400.00,2025-01-15
+JPM,JPMorgan Chase,Financials,Banks,2.1,180.00,2025-01-15
 ```
 
-#### 2. Investment Universe (`02_SP500_Universe.csv`)
+---
+
+#### 2. Universe (`02_SP500_Universe.csv`)
 Define which securities are eligible for investment:
 ```csv
 Ticker,Security_Name,GICS_Sector,Is_Investible,Liquidity_Score,Market_Cap_USD_B
@@ -156,34 +243,40 @@ PENNY,Penny Stock Co,Financials,FALSE,0.10,0.5
 ```
 - Set `Is_Investible=FALSE` to exclude securities from selection
 
-#### 3. Current Portfolio (`03_Portfolio_25_Holdings.csv`)
-Your existing holdings (used for transaction cost calculation):
+---
+
+#### 3. Current Holdings (`03_Portfolio_25_Holdings.csv`)
+Your existing portfolio (used for transaction cost calculation):
 ```csv
 Ticker,Security_Name,Shares,Price,Market_Value,Portfolio_Weight_Pct
 AAPL,Apple Inc.,1000,180.00,180000,7.2
 MSFT,Microsoft,500,400.00,200000,8.0
 ```
 
+---
+
 #### 4. Alpha Model (`04_Alpha_Model_SP500.csv`)
-Your alpha signals/scores for each security:
+Your alpha signals/scores:
 ```csv
 Ticker,Security_Name,Alpha_Score,Alpha_Quintile,Signal_Date
 AAPL,Apple Inc.,0.85,1,2025-01-15
 MSFT,Microsoft,0.72,2,2025-01-15
 XOM,Exxon Mobil,0.35,4,2025-01-15
 ```
-- `Alpha_Score`: 0.0 (most bearish) to 1.0 (most bullish)
+- `Alpha_Score`: 0.0 (bearish) to 1.0 (bullish)
 - `Alpha_Quintile`: 1 (top 20%) to 5 (bottom 20%)
 
+---
+
 #### 5. Factor Loadings (`05_Risk_Model_Factor_Loadings.csv`)
-Factor exposures for each security (Barra-style risk model):
+Factor exposures for each security (Barra-style):
 ```csv
 Ticker,Momentum,Value,Size,Volatility,Quality,Growth,Liquidity,Dividend_Yield,Idiosyncratic_Risk
 AAPL,0.8,-0.3,-0.5,-0.2,0.6,0.7,-0.4,-0.1,0.15
 MSFT,0.6,-0.2,-0.6,-0.3,0.7,0.5,-0.3,0.1,0.12
 ```
-- Factor loadings are typically standardized (z-scores)
-- `Idiosyncratic_Risk`: Security-specific volatility not explained by factors
+
+---
 
 #### 6. Factor Returns (`06_Risk_Model_Factor_Returns.csv`)
 Historical or expected returns for each factor:
@@ -194,43 +287,67 @@ Value,0.3,1.5
 Size,-0.2,-0.8
 Volatility,-0.4,-1.2
 Quality,0.4,1.8
-Growth,0.6,2.5
-Liquidity,0.1,0.4
-Dividend_Yield,0.2,0.9
 ```
 
-#### 7. Factor Covariance Matrix (`07_Risk_Model_Factor_Covariance.csv`)
-Covariance between factors (8×8 matrix):
+---
+
+#### 7. Factor Covariance (`07_Risk_Model_Factor_Covariance.csv`)
+Covariance matrix between factors (8×8):
 ```csv
 Factor,Momentum,Value,Size,Volatility,Quality,Growth,Liquidity,Dividend_Yield
 Momentum,0.04,0.01,-0.005,0.008,-0.002,0.015,0.003,-0.001
 Value,0.01,0.03,0.012,-0.006,0.008,-0.01,0.005,0.01
-Size,-0.005,0.012,0.02,0.01,-0.003,-0.008,0.015,0.002
 ...
 ```
 
-#### 8. Optimization Constraints (`08_Optimization_Constraints.csv`)
+---
+
+#### 8. Constraints (`08_Optimization_Constraints.csv`)
 Investment guidelines and limits:
 ```csv
 Constraint_ID,Constraint_Type,Target,Min_Value,Max_Value,Is_Enabled
 single_stock_AAPL,single_stock_active,AAPL,-1.0,1.0,TRUE
-single_stock_MSFT,single_stock_active,MSFT,-1.0,1.0,TRUE
 sector_IT,sector_active,Information Technology,-2.0,2.0,TRUE
-sector_Financials,sector_active,Financials,-2.0,2.0,TRUE
 ```
-- `single_stock_active`: Max deviation from benchmark weight per stock
-- `sector_active`: Max deviation from benchmark weight per sector
-- Set `Is_Enabled=FALSE` to disable a constraint
+- `single_stock_active`: Max deviation from benchmark per stock (%)
+- `sector_active`: Max deviation from benchmark per sector (%)
+- Set `Is_Enabled=FALSE` to disable
+
+---
 
 #### 9. Transaction Costs (`09_Transaction_Cost_Model.csv`)
-Trading costs for each security:
+Trading costs per security:
 ```csv
 Ticker,Security_Name,Bid_Ask_Spread_Bps,Commission_Bps,Market_Impact_Bps,Total_Cost_Bps
 AAPL,Apple Inc.,1.5,0.5,2.0,4.0
 MSFT,Microsoft,1.8,0.5,2.2,4.5
 SMALL,Small Cap Stock,8.0,0.5,12.0,20.5
 ```
-- Costs in basis points (bps), where 100 bps = 1%
+- Costs in basis points (100 bps = 1%)
+
+---
+
+### Quickstart: Custom Data
+
+**Example: Switch from S&P 500 to Russell 2000**
+
+1. Replace `01_SP500_Benchmark_Constituency.csv` with Russell 2000 constituents
+2. Replace `02_SP500_Universe.csv` with Russell 2000 universe
+3. Update `04_Alpha_Model_SP500.csv` with your alpha signals for those stocks
+4. Update `05_Risk_Model_Factor_Loadings.csv` with factor loadings
+5. Run optimization - the system will now build a Russell 2000 portfolio!
+
+**Example: Use Your Own Alpha Model**
+
+Replace only `04_Alpha_Model_SP500.csv`:
+```csv
+Ticker,Alpha_Score,Alpha_Quintile
+AAPL,0.85,1
+MSFT,0.72,2
+...
+```
+- Your own model's output, ML predictions, analyst ratings, etc.
+- System will select top N securities by `Alpha_Quintile` (quintile 1 first)
 
 ## 🚀 Usage
 
