@@ -57,6 +57,10 @@ class PortfolioState(BaseModel):
         default_factory=dict,
         description="Ticker -> GICS sector mapping"
     )
+    current_weights: dict[str, float] = Field(
+        default_factory=dict,
+        description="Current portfolio weights (decimal) for rebalancing"
+    )
     
     # ===========================================
     # Data Validation

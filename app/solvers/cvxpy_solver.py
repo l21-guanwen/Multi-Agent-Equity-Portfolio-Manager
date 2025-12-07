@@ -105,9 +105,12 @@ class CvxpySolver(ISolver):
         if initial_weights is not None and transaction_cost_penalty > 0:
             if transaction_costs is None:
                 transaction_costs = np.ones(n) * 10  # Default 10 bps
-            # Approximate |dw| with linear cost
+            # Convert transaction costs from bps to decimal (100 bps = 1% = 0.01)
+            # Then scale by penalty parameter
+            transaction_costs_decimal = transaction_costs / 10000.0  # bps to decimal
+            # Approximate |dw| with linear cost: penalty * sum(|cost_i * dw_i|)
             dw = w - initial_weights
-            tcost_term = transaction_cost_penalty * cp.norm1(cp.multiply(transaction_costs, dw))
+            tcost_term = transaction_cost_penalty * cp.norm1(cp.multiply(transaction_costs_decimal, dw))
         
         # Full objective: maximize alpha - risk - tcost
         objective = cp.Maximize(alpha_term - (risk_aversion / 2) * risk_term - tcost_term)

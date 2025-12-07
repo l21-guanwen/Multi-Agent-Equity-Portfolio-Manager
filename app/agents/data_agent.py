@@ -71,6 +71,7 @@ class DataAgent:
             benchmark = data.get("benchmark")
             alpha_model = data.get("alpha_model")
             risk_model = data.get("risk_model")
+            transaction_costs = data.get("transaction_costs")
             
             # Build state updates
             updates: dict[str, Any] = {
@@ -79,6 +80,12 @@ class DataAgent:
                 "execution_log": execution_log,
                 "current_agent": "data_agent",
             }
+            
+            # Store transaction cost availability flag
+            if transaction_costs:
+                updates["execution_log"].append(
+                    f"[DataAgent] Transaction costs loaded: {transaction_costs.security_count} securities"
+                )
             
             # Extract universe tickers
             if benchmark:

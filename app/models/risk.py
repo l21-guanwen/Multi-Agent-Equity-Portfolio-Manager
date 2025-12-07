@@ -183,14 +183,17 @@ class RiskModel(BaseModel):
         """
         Get factor loadings matrix for a list of tickers.
         
-        Returns NxK matrix where N = number of tickers, K = number of factors.
+        Returns NxK matrix where N = number of tickers, K = number of factors (8).
+        For tickers without loadings, uses zero loadings as fallback.
         """
         loadings = []
         for ticker in tickers:
             loading = self.get_loadings(ticker)
             if loading is None:
-                raise ValueError(f"No factor loadings found for ticker: {ticker}")
-            loadings.append(loading.get_loadings_array())
+                # Use neutral loadings (zeros) as fallback
+                loadings.append(np.zeros(8))
+            else:
+                loadings.append(loading.get_loadings_array())
         return np.array(loadings)
 
     def get_specific_risk_dict(self) -> dict[str, float]:

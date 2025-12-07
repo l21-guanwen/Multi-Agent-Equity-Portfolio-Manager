@@ -101,8 +101,10 @@ class ScipySolver(ISolver):
             tcost_term = 0
             if initial_weights is not None and transaction_cost_penalty > 0:
                 if transaction_costs is not None:
+                    # Convert transaction costs from bps to decimal (100 bps = 1% = 0.01)
+                    transaction_costs_decimal = transaction_costs / 10000.0
                     tcost_term = transaction_cost_penalty * np.sum(
-                        np.abs(transaction_costs * (w - initial_weights))
+                        np.abs(transaction_costs_decimal * (w - initial_weights))
                     )
                 else:
                     tcost_term = transaction_cost_penalty * np.sum(np.abs(w - initial_weights))

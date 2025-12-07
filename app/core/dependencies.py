@@ -184,6 +184,7 @@ def get_portfolio_graph() -> PortfolioGraph:
         compliance_service=get_compliance_service(),
         risk_repository=get_risk_repository(),
         constraint_repository=get_constraint_repository(),
+        transaction_cost_repository=get_transaction_cost_repository(),
         llm_provider=get_llm_provider(),
     )
 

@@ -18,6 +18,7 @@ from app.agents.compliance_agent import ComplianceAgent
 from app.llm.interfaces.llm_provider import ILLMProvider
 from app.repositories.interfaces.constraint_repository import IConstraintRepository
 from app.repositories.interfaces.risk_repository import IRiskRepository
+from app.repositories.interfaces.transaction_cost_repository import ITransactionCostRepository
 from app.services.interfaces.alpha_service import IAlphaService
 from app.services.interfaces.compliance_service import IComplianceService
 from app.services.interfaces.data_service import IDataService
@@ -48,6 +49,7 @@ class PortfolioGraph:
         compliance_service: IComplianceService,
         risk_repository: IRiskRepository,
         constraint_repository: IConstraintRepository,
+        transaction_cost_repository: ITransactionCostRepository,
         llm_provider: Optional[ILLMProvider] = None,
     ):
         """
@@ -61,6 +63,7 @@ class PortfolioGraph:
             compliance_service: Service for compliance checking
             risk_repository: Repository for risk model data
             constraint_repository: Repository for constraint data
+            transaction_cost_repository: Repository for transaction cost data
             llm_provider: Optional LLM provider for agent analysis
         """
         # Create agents
@@ -68,7 +71,7 @@ class PortfolioGraph:
         self._alpha_agent = AlphaAgent(alpha_service, llm_provider)
         self._risk_agent = RiskAgent(risk_service, risk_repository, llm_provider)
         self._optimization_agent = OptimizationAgent(
-            optimization_service, risk_repository, constraint_repository, llm_provider
+            optimization_service, risk_repository, constraint_repository, transaction_cost_repository, llm_provider
         )
         self._compliance_agent = ComplianceAgent(
             compliance_service, constraint_repository, llm_provider
@@ -193,6 +196,7 @@ def create_portfolio_graph(
     compliance_service: IComplianceService,
     risk_repository: IRiskRepository,
     constraint_repository: IConstraintRepository,
+    transaction_cost_repository: ITransactionCostRepository,
     llm_provider: Optional[ILLMProvider] = None,
 ) -> PortfolioGraph:
     """
@@ -206,6 +210,7 @@ def create_portfolio_graph(
         compliance_service: Service for compliance checking
         risk_repository: Repository for risk model data
         constraint_repository: Repository for constraint data
+        transaction_cost_repository: Repository for transaction cost data
         llm_provider: Optional LLM provider for agent analysis
         
     Returns:
@@ -219,6 +224,7 @@ def create_portfolio_graph(
         compliance_service=compliance_service,
         risk_repository=risk_repository,
         constraint_repository=constraint_repository,
+        transaction_cost_repository=transaction_cost_repository,
         llm_provider=llm_provider,
     )
 

@@ -88,8 +88,13 @@ class OptimizationService(IOptimizationService):
                 ) / 100.0  # Convert to decimal
                 
                 if constraint.is_relative:
-                    lower_bounds[idx] = max(0, benchmark_weight + constraint.lower_bound_pct / 100.0)
-                    upper_bounds[idx] = benchmark_weight + constraint.upper_bound_pct / 100.0
+                    new_lower = max(0, benchmark_weight + constraint.lower_bound_pct / 100.0)
+                    new_upper = benchmark_weight + constraint.upper_bound_pct / 100.0
+                    
+                    # Ensure lower <= upper to avoid infeasibility
+                    if new_lower <= new_upper:
+                        lower_bounds[idx] = new_lower
+                        upper_bounds[idx] = max(new_upper, new_lower)  # Ensure upper >= lower
         
         # Build sector constraints as linear constraints
         inequality_constraints = []
@@ -105,10 +110,11 @@ class OptimizationService(IOptimizationService):
                     sector_to_tickers[sector] = []
                 sector_to_tickers[sector].append(i)
         
-        # Add sector constraints
+        # Add sector constraints (only if we have tickers in that sector)
+        from app.solvers.interfaces.solver import ConstraintSpec
         for constraint in constraint_set.sector_constraints:
             sector = constraint.constraint_name
-            if sector in sector_to_tickers:
+            if sector in sector_to_tickers and sector_to_tickers[sector]:
                 indices = sector_to_tickers[sector]
                 
                 # Build constraint coefficients
@@ -116,27 +122,37 @@ class OptimizationService(IOptimizationService):
                 for idx in indices:
                     coeffs[idx] = 1.0
                 
-                benchmark_sector_weight = constraint.benchmark_weight_pct / 100.0
+                benchmark_sector_weight = max(0, constraint.benchmark_weight_pct / 100.0)
                 
                 if constraint.is_relative:
-                    # Upper bound: sum(w) <= benchmark + upper
-                    from app.solvers.interfaces.solver import ConstraintSpec
-                    upper_constraint = ConstraintSpec(
-                        name=f"{sector}_upper",
-                        constraint_type="ineq",
-                        coefficients=coeffs.tolist(),
-                        bound=benchmark_sector_weight + constraint.upper_bound_pct / 100.0,
-                    )
-                    inequality_constraints.append(upper_constraint)
+                    # Calculate bounds with safety checks
+                    lower_pct = constraint.lower_bound_pct / 100.0
+                    upper_pct = constraint.upper_bound_pct / 100.0
                     
-                    # Lower bound: -sum(w) <= -(benchmark + lower)
-                    lower_constraint = ConstraintSpec(
-                        name=f"{sector}_lower",
-                        constraint_type="ineq",
-                        coefficients=(-coeffs).tolist(),
-                        bound=-(benchmark_sector_weight + constraint.lower_bound_pct / 100.0),
-                    )
-                    inequality_constraints.append(lower_constraint)
+                    lower_bound_val = max(0, benchmark_sector_weight + lower_pct)
+                    upper_bound_val = benchmark_sector_weight + upper_pct
+                    
+                    # Only add constraints if they are feasible (upper >= lower)
+                    if upper_bound_val >= lower_bound_val and upper_bound_val >= 0:
+                        # Upper bound: sum(w) <= upper_bound_val
+                        upper_constraint = ConstraintSpec(
+                            name=f"{sector}_upper",
+                            constraint_type="ineq",
+                            coefficients=coeffs.tolist(),
+                            bound=upper_bound_val,
+                        )
+                        inequality_constraints.append(upper_constraint)
+                        
+                        # Lower bound: -sum(w) <= -lower_bound_val (equivalent to sum(w) >= lower)
+                        # Only add if lower > 0 to avoid redundant constraints
+                        if lower_bound_val > 0:
+                            lower_constraint = ConstraintSpec(
+                                name=f"{sector}_lower",
+                                constraint_type="ineq",
+                                coefficients=(-coeffs).tolist(),
+                                bound=-lower_bound_val,
+                            )
+                            inequality_constraints.append(lower_constraint)
         
         # Get initial weights for transaction costs
         initial_weights = None
@@ -188,7 +204,7 @@ class OptimizationService(IOptimizationService):
         return OptimizationResult(
             weights=solver_result.weights,
             objective_value=solver_result.objective_value,
-            status=solver_result.status.value,
+            status=str(solver_result.status),  # Convert SolverStatus enum to string
             solver_name=solver_result.solver_name,
             expected_alpha=expected_alpha,
             expected_risk=expected_risk,
