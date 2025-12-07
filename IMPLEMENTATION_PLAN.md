@@ -599,15 +599,68 @@ SECTOR_ACTIVE_WEIGHT_LIMIT=0.02
 
 ## LLM Usage in Agents
 
-Each agent uses the LLM for intelligent decision-making and reasoning:
+### Architecture Overview
 
-| Agent | LLM Responsibilities |
-|-------|---------------------|
-| **Data Agent** | Validate data quality, identify anomalies, explain data issues, suggest data fixes |
-| **Alpha Agent** | Explain alpha signal selection rationale, justify quintile filtering, interpret signal strength |
-| **Risk Agent** | Interpret factor exposures, explain portfolio risk characteristics, identify risk concentrations |
-| **Optimization Agent** | Explain optimization trade-offs, justify weight allocations, interpret solver results |
-| **Compliance Agent** | Analyze constraint violations, explain breach severity, suggest remediation strategies |
+The system uses two LLM agent patterns:
+
+1. **ReAct Agents** (Data, Alpha, Risk): Use `create_react_agent` from LangGraph to decide which tools to call
+2. **Chain-of-Thought Agent** (Optimization): Uses step-by-step reasoning to solve the portfolio optimization problem
+
+### ReAct Pattern (Reasoning + Acting)
+
+```
+┌─────────────────────────────────────────┐
+│            ReAct Agent Loop             │
+├─────────────────────────────────────────┤
+│ 1. LLM reads task + tool descriptions   │
+│ 2. LLM outputs: THOUGHT → ACTION        │
+│ 3. Agent executes chosen tool           │
+│ 4. Tool returns OBSERVATION             │
+│ 5. Repeat until ACTION: FINISH          │
+└─────────────────────────────────────────┘
+```
+
+### Chain-of-Thought Pattern (for Optimization)
+
+```
+┌─────────────────────────────────────────┐
+│         CoT Optimization Agent          │
+├─────────────────────────────────────────┤
+│ 1. LLM receives all data + constraints  │
+│ 2. LLM reasons step-by-step:            │
+│    - Identify top alpha securities      │
+│    - Apply position limits              │
+│    - Balance alpha vs risk              │
+│    - Check sector constraints           │
+│ 3. LLM outputs: portfolio weights JSON  │
+└─────────────────────────────────────────┘
+```
+
+### Agent Responsibilities
+
+| Agent | Pattern | LLM Responsibilities | Fallback (no LLM) |
+|-------|---------|---------------------|-------------------|
+| **Data Agent** | ReAct | Decide which data tools to call, validate data | Load all data directly |
+| **Alpha Agent** | ReAct | Call alpha tool, select top securities | Select top N from Q1 |
+| **Risk Agent** | ReAct | Call risk tool, analyze factor exposures | Direct factor calculation |
+| **Optimization Agent** | CoT | Reason through optimization, determine weights | CVXPY mathematical solver |
+| **Compliance Agent** | Rule-based | N/A (deterministic checks) | Same behavior |
+
+### Tools (LangChain @tool decorator)
+
+Tools are defined with detailed docstrings that LLM reads to understand usage:
+
+```python
+@tool
+async def load_alpha_scores(as_of_date: Optional[str] = None) -> dict:
+    """Load AI-generated alpha scores for securities.
+    
+    Alpha scores (0-1) represent expected excess returns:
+    - 0.80-1.00 = Quintile 1 (Top 20%, strongest buy signal)
+    - 0.60-0.80 = Quintile 2
+    ...
+    """
+```
 
 ### Agent Prompt Templates (Examples)
 

@@ -9,6 +9,7 @@ from typing import Optional, Type
 
 from openai import AsyncOpenAI
 from pydantic import BaseModel
+from langchain_openai import ChatOpenAI
 
 from app.llm.interfaces.llm_provider import (
     ILLMProvider,
@@ -49,11 +50,26 @@ class OpenAIProvider(ILLMProvider):
             base_url: Optional custom base URL
         """
         self._model = model
+        self._api_key = api_key
         self._client = AsyncOpenAI(
             api_key=api_key,
             organization=organization,
             base_url=base_url,
         )
+        
+        # LangChain-compatible model for ReAct agents
+        self._langchain_model = ChatOpenAI(
+            model=model,
+            api_key=api_key,
+            organization=organization,
+            base_url=base_url,
+            temperature=0.7,
+        )
+
+    @property
+    def langchain_model(self) -> ChatOpenAI:
+        """Get LangChain-compatible chat model for use with LangGraph agents."""
+        return self._langchain_model
 
     @property
     def provider_name(self) -> str:

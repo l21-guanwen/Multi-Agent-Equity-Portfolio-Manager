@@ -1,27 +1,65 @@
 """
 Risk Agent for the multi-agent portfolio management system.
 
-Responsible for risk analysis and factor exposure calculation.
+Uses LangGraph's create_react_agent for tool-based reasoning.
+When LLM is enabled, the agent decides which tools to call.
+When LLM is disabled, falls back to direct calculation.
 """
 
 from typing import Any, Optional
 
-from app.agents.prompts import RISK_AGENT_SYSTEM_PROMPT
+from langchain_core.messages import HumanMessage, AIMessage
+from langchain_core.language_models import BaseChatModel
+from langgraph.prebuilt import create_react_agent as create_langgraph_react_agent
+
 from app.agents.state import PortfolioState
 from app.llm.interfaces.llm_provider import ILLMProvider
-from app.models.risk import RiskModel
 from app.repositories.interfaces.risk_repository import IRiskRepository
 from app.services.interfaces.risk_service import IRiskService
+from app.tools.langchain_tools import load_risk_model
+
+
+RISK_AGENT_SYSTEM_PROMPT = """You are a Risk Analysis Agent for an institutional equity portfolio manager.
+
+Your task is to analyze portfolio risk using a Barra-style multi-factor model.
+
+## Risk Model
+The model has 8 factors:
+1. Market - Broad market beta (systematic risk)
+2. Size - Market cap factor (small vs large)
+3. Value - Value vs growth characteristics
+4. Momentum - Price momentum
+5. Quality - Earnings quality
+6. Volatility - Stock volatility
+7. Growth - Revenue/earnings growth
+8. Dividend Yield - Dividend characteristics
+
+## Risk Calculation
+Portfolio Risk = √(Systematic Risk² + Specific Risk²)
+
+Where:
+- Systematic Risk comes from factor exposures
+- Specific Risk is idiosyncratic (stock-specific)
+
+## Your Approach
+1. Use load_risk_model tool to get factor data
+2. Analyze factor exposures for selected securities
+3. Calculate estimated portfolio volatility
+4. Identify dominant risk factors"""
 
 
 class RiskAgent:
     """
-    Risk Agent responsible for risk analysis.
+    Risk Agent for portfolio risk analysis.
     
-    This agent:
-    1. Calculates factor exposures for selected securities
-    2. Computes portfolio-level risk metrics
-    3. Uses LLM to interpret risk characteristics
+    When LLM is enabled (use_llm=True):
+        - Creates a ReAct agent using LangGraph's create_react_agent
+        - Agent decides to call load_risk_model tool
+        - LLM analyzes factor exposures
+    
+    When LLM is disabled (use_llm=False):
+        - Directly loads risk model
+        - Programmatically calculates risk metrics
     """
 
     def __init__(
@@ -30,28 +68,20 @@ class RiskAgent:
         risk_repository: IRiskRepository,
         llm_provider: Optional[ILLMProvider] = None,
     ):
-        """
-        Initialize the Risk Agent.
-        
-        Args:
-            risk_service: Service for risk calculations
-            risk_repository: Repository for risk model data
-            llm_provider: Optional LLM provider for analysis
-        """
+        """Initialize the Risk Agent."""
         self._risk_service = risk_service
         self._risk_repo = risk_repository
-        self._llm = llm_provider
-
+        self._llm_provider = llm_provider
+        self._tools = [load_risk_model]
+    
+    def _get_langchain_llm(self) -> Optional[BaseChatModel]:
+        """Get LangChain-compatible LLM from provider."""
+        if not self._llm_provider:
+            return None
+        return getattr(self._llm_provider, 'langchain_model', None)
+    
     async def __call__(self, state: PortfolioState) -> dict[str, Any]:
-        """
-        Execute the risk agent.
-        
-        Args:
-            state: Current portfolio state
-            
-        Returns:
-            Updated state fields
-        """
+        """Execute the risk agent."""
         execution_log = [f"[RiskAgent] Starting risk analysis..."]
         
         try:
@@ -63,55 +93,17 @@ class RiskAgent:
                     "current_agent": "risk_agent",
                 }
             
-            # Load risk model
-            risk_model = await self._risk_repo.get_risk_model()
+            llm = self._get_langchain_llm()
             
-            if not risk_model:
-                execution_log.append("[RiskAgent] WARNING: No risk model available")
-                return {
-                    "execution_log": execution_log,
-                    "current_agent": "risk_agent",
-                }
-            
-            # Calculate equal-weight exposures for selected securities
-            # (Will be refined after optimization)
-            n = len(state.selected_tickers)
-            equal_weights = {t: 1.0 / n for t in state.selected_tickers}
-            
-            # Calculate factor exposures
-            factor_exposure = await self._risk_service.calculate_factor_exposure(
-                equal_weights, risk_model
-            )
-            execution_log.append(f"[RiskAgent] Factor exposures calculated")
-            
-            # Calculate portfolio risk
-            risk_metrics = await self._risk_service.calculate_portfolio_risk(
-                equal_weights, risk_model
-            )
-            execution_log.append(
-                f"[RiskAgent] Portfolio risk: {risk_metrics.total_risk_pct:.2f}%"
-            )
-            
-            # Generate LLM analysis
-            if self._llm:
-                llm_analysis = await self._generate_analysis(
-                    factor_exposure, risk_metrics, state
-                )
-                execution_log.append(f"[RiskAgent] LLM analysis generated")
+            # Use ReAct agent if LLM available and enabled
+            if llm and state.use_llm:
+                execution_log.append("[RiskAgent] Using LangGraph ReAct agent")
+                result = await self._execute_with_react(state, llm, execution_log)
             else:
-                llm_analysis = self._generate_basic_analysis(
-                    factor_exposure, risk_metrics, state
-                )
+                execution_log.append("[RiskAgent] Using direct calculation (no LLM)")
+                result = await self._execute_direct(state, execution_log)
             
-            execution_log.append(f"[RiskAgent] Completed")
-            
-            return {
-                "factor_exposures": factor_exposure.to_dict(),
-                "portfolio_risk_pct": risk_metrics.total_risk_pct,
-                "risk_analysis": llm_analysis,
-                "execution_log": execution_log,
-                "current_agent": "risk_agent",
-            }
+            return result
             
         except Exception as e:
             execution_log.append(f"[RiskAgent] ERROR: {str(e)}")
@@ -121,68 +113,148 @@ class RiskAgent:
                 "current_agent": "risk_agent",
             }
 
-    async def _generate_analysis(
-        self,
-        factor_exposure: Any,
-        risk_metrics: Any,
+    async def _execute_with_react(
+        self, 
+        state: PortfolioState, 
+        llm: BaseChatModel,
+        execution_log: list[str],
+    ) -> dict[str, Any]:
+        """Execute using LangGraph ReAct agent."""
+        
+        # Create ReAct agent using LangGraph's prebuilt agent
+        from langchain_core.messages import SystemMessage
+        
+        react_agent = create_langgraph_react_agent(
+            model=llm,
+            tools=self._tools,
+            prompt=SystemMessage(content=RISK_AGENT_SYSTEM_PROMPT),
+        )
+        
+        # Prepare task
+        tickers_str = ", ".join(state.selected_tickers[:10])
+        task = f"""Analyze risk for the selected portfolio.
+
+Selected securities: {tickers_str}{'...' if len(state.selected_tickers) > 10 else ''}
+Total: {len(state.selected_tickers)} securities
+
+Steps:
+1. Use load_risk_model tool to get factor loadings
+2. Calculate portfolio factor exposures (assume equal weights)
+3. Estimate portfolio volatility
+
+Provide:
+- Factor exposures for each of the 8 factors
+- Estimated portfolio volatility (%)
+- Key risk insights"""
+
+        # Invoke agent
+        result = await react_agent.ainvoke({
+            "messages": [HumanMessage(content=task)]
+        })
+        
+        # Get analysis from last AI message
+        analysis = ""
+        for msg in reversed(result["messages"]):
+            if isinstance(msg, AIMessage):
+                analysis = msg.content[:500]
+                break
+        
+        # Calculate actual risk metrics
+        risk_metrics = await self._calculate_risk_metrics(state, execution_log)
+        
+        execution_log.append(f"[RiskAgent] Risk analysis complete")
+        
+        return {
+            **risk_metrics,
+            "risk_analysis": analysis,
+            "execution_log": execution_log,
+            "current_agent": "risk_agent",
+        }
+
+    async def _execute_direct(
+        self, 
+        state: PortfolioState, 
+        execution_log: list[str],
+    ) -> dict[str, Any]:
+        """Execute risk calculation directly without LLM."""
+        
+        risk_metrics = await self._calculate_risk_metrics(state, execution_log)
+        
+        # Generate analysis
+        exposures = risk_metrics.get("factor_exposures", {})
+        risk_pct = risk_metrics.get("portfolio_risk_pct", 15.0)
+        
+        dominant_factors = sorted(
+            exposures.items(), 
+            key=lambda x: abs(x[1]), 
+            reverse=True
+        )[:3]
+        
+        analysis = f"""Risk Analysis Complete
+
+Portfolio Volatility: {risk_pct:.2f}%
+
+Dominant Factor Exposures:
+{chr(10).join(f'- {f}: {e:.3f}' for f, e in dominant_factors)}
+
+Market Beta: {exposures.get('Market', 1.0):.2f}
+
+Risk Profile: {'High' if risk_pct > 20 else 'Moderate' if risk_pct > 15 else 'Low'} volatility portfolio."""
+        
+        return {
+            **risk_metrics,
+            "risk_analysis": analysis,
+            "execution_log": execution_log,
+            "current_agent": "risk_agent",
+        }
+
+    async def _calculate_risk_metrics(
+        self, 
         state: PortfolioState,
-    ) -> str:
-        """Generate LLM-powered risk analysis."""
-        exposures = factor_exposure.to_dict()
+        execution_log: list[str],
+    ) -> dict[str, Any]:
+        """Calculate risk metrics for the portfolio."""
         
-        prompt = f"""Analyze the following portfolio risk characteristics:
-
-Risk Metrics:
-- Total Risk: {risk_metrics.total_risk_pct:.2f}%
-- Systematic Risk: {risk_metrics.systematic_risk_pct:.2f}%
-- Specific Risk: {risk_metrics.specific_risk_pct:.2f}%
-- Portfolio Beta: {risk_metrics.beta:.2f}
-
-Factor Exposures:
-{chr(10).join(f'- {factor}: {exp:.3f}' for factor, exp in exposures.items())}
-
-Portfolio Context:
-- Number of holdings: {len(state.selected_tickers)}
-- This is a pre-optimization analysis (equal-weighted)
-
-Identify key risk drivers and any factor concentrations of concern."""
-
-        try:
-            response = await self._llm.generate(
-                prompt=prompt,
-                system_prompt=RISK_AGENT_SYSTEM_PROMPT,
-                temperature=0.5,
-                max_tokens=600,
-            )
-            return response.content
-        except Exception:
-            return self._generate_basic_analysis(factor_exposure, risk_metrics, state)
-
-    def _generate_basic_analysis(
-        self,
-        factor_exposure: Any,
-        risk_metrics: Any,
-        state: PortfolioState,
-    ) -> str:
-        """Generate basic risk analysis without LLM."""
-        exposures = factor_exposure.to_dict()
+        # Load risk model
+        risk_model = await self._risk_repo.get_risk_model()
         
-        # Find highest and lowest exposures
-        sorted_exp = sorted(exposures.items(), key=lambda x: abs(x[1]), reverse=True)
-        top_factor = sorted_exp[0] if sorted_exp else ("N/A", 0)
+        if not risk_model:
+            execution_log.append("[RiskAgent] Risk model not available")
+            return {
+                "factor_exposures": {},
+                "portfolio_risk_pct": 15.0,  # Default estimate
+            }
         
-        return f"""Risk Analysis Summary
-
-Portfolio Risk Metrics:
-- Total Risk: {risk_metrics.total_risk_pct:.2f}%
-- Systematic Risk: {risk_metrics.systematic_risk_pct:.2f}%
-- Specific Risk: {risk_metrics.specific_risk_pct:.2f}%
-- Beta: {risk_metrics.beta:.2f}
-
-Dominant Factor Exposure: {top_factor[0]} ({top_factor[1]:.3f})
-
-Factor Profile:
-{chr(10).join(f'- {f}: {e:.3f}' for f, e in sorted_exp[:4])}
-
-Risk assessment based on {len(state.selected_tickers)} equal-weighted positions."""
-
+        execution_log.append(f"[RiskAgent] Loaded risk model: {risk_model.security_count} securities")
+        
+        # Create equal-weight portfolio
+        n = len(state.selected_tickers)
+        equal_weights = {t: 1.0 / n for t in state.selected_tickers}
+        
+        # Calculate factor exposures
+        factor_exposure = await self._risk_service.calculate_factor_exposure(
+            equal_weights, risk_model
+        )
+        
+        # Calculate portfolio risk
+        risk_metrics = await self._risk_service.calculate_portfolio_risk(
+            equal_weights, risk_model
+        )
+        
+        execution_log.append(
+            f"[RiskAgent] Portfolio risk: {risk_metrics.total_risk_pct:.2f}%"
+        )
+        
+        return {
+            "factor_exposures": {
+                "Market": factor_exposure.market,
+                "Size": factor_exposure.size,
+                "Value": factor_exposure.value,
+                "Momentum": factor_exposure.momentum,
+                "Quality": factor_exposure.quality,
+                "Volatility": factor_exposure.volatility,
+                "Growth": factor_exposure.growth,
+                "Dividend_Yield": factor_exposure.dividend_yield,
+            },
+            "portfolio_risk_pct": risk_metrics.total_risk_pct,
+        }

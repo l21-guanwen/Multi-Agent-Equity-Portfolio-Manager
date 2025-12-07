@@ -1,115 +1,148 @@
 """
-Tests for alpha agent.
+Tests for Alpha Agent (LangGraph ReAct-based).
 """
 
 import pytest
-from datetime import date
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
 
 from app.agents.alpha_agent import AlphaAgent
-from app.agents.state import create_initial_state
+from app.agents.state import PortfolioState
 from app.services.alpha_service import AlphaService
-from app.models.alpha import AlphaScore, AlphaModel
 
 
 class TestAlphaAgent:
-    """Tests for AlphaAgent."""
-
-    @pytest.fixture
-    def sample_alpha_model(self) -> AlphaModel:
-        """Create sample alpha model."""
-        scores = [
-            AlphaScore(ticker=f"STOCK{i}", alpha_score=0.9 - i * 0.02, alpha_quintile=1)
-            for i in range(30)
-        ]
-        return AlphaModel(scores=scores)
+    """Tests for AlphaAgent with LangGraph ReAct pattern."""
 
     @pytest.fixture
     def alpha_agent(self) -> AlphaAgent:
-        """Create alpha agent."""
+        """Create alpha agent without LLM."""
         return AlphaAgent(
             alpha_service=AlphaService(),
             llm_provider=None,
         )
 
-    @pytest.mark.asyncio
-    async def test_process_selects_top_securities(
-        self,
-        alpha_agent: AlphaAgent,
-        sample_alpha_model: AlphaModel,
-    ):
-        """Test that process selects top N securities."""
-        state = create_initial_state(
-            portfolio_id="test",
-            as_of_date=date(2024, 1, 1),
+    @pytest.fixture
+    def initial_state(self) -> PortfolioState:
+        """Create initial portfolio state with alpha data."""
+        return PortfolioState(
+            portfolio_id="TEST",
+            portfolio_size=25,
+            data_validation_passed=True,
+            use_llm=False,
+            alpha_scores={f"STOCK{i:02d}": 0.95 - i * 0.02 for i in range(50)},
+            alpha_quintiles={f"STOCK{i:02d}": 1 if i < 30 else 2 for i in range(50)},
+            sector_mapping={f"STOCK{i:02d}": "Technology" if i < 20 else "Financials" for i in range(50)},
         )
-        state["alpha_model"] = sample_alpha_model
-        state["current_step"] = "data_loaded"
-        
-        result = await alpha_agent.process(state, n_securities=25)
-        
-        assert result["selected_securities"] is not None
-        assert len(result["selected_securities"]) == 25
-        assert result["current_step"] == "alpha_analyzed"
 
     @pytest.mark.asyncio
-    async def test_selected_securities_sorted_by_alpha(
+    async def test_call_selects_top_securities(
         self,
         alpha_agent: AlphaAgent,
-        sample_alpha_model: AlphaModel,
+        initial_state: PortfolioState,
     ):
-        """Test that selected securities are sorted by alpha."""
-        state = create_initial_state(
-            portfolio_id="test",
-            as_of_date=date(2024, 1, 1),
-        )
-        state["alpha_model"] = sample_alpha_model
-        state["current_step"] = "data_loaded"
+        """Test that __call__ selects top securities by alpha."""
+        result = await alpha_agent(initial_state)
         
-        result = await alpha_agent.process(state, n_securities=10)
-        
-        securities = result["selected_securities"]
-        scores = [s.alpha_score for s in securities]
-        assert scores == sorted(scores, reverse=True)
+        assert "selected_tickers" in result
+        assert len(result["selected_tickers"]) == 25
+        assert result["current_agent"] == "alpha_agent"
 
     @pytest.mark.asyncio
-    async def test_process_without_alpha_model(
+    async def test_selected_tickers_are_from_q1(
         self,
         alpha_agent: AlphaAgent,
+        initial_state: PortfolioState,
     ):
-        """Test that process handles missing alpha model."""
-        state = create_initial_state(
-            portfolio_id="test",
-            as_of_date=date(2024, 1, 1),
-        )
-        state["alpha_model"] = None
-        state["current_step"] = "data_loaded"
+        """Test that selected tickers are from Quintile 1."""
+        result = await alpha_agent(initial_state)
         
-        result = await alpha_agent.process(state)
-        
-        assert len(result["errors"]) > 0
-        assert "alpha" in result["errors"][0].lower()
+        selected = result["selected_tickers"]
+        # All selected should be Q1 (quintile == 1)
+        for ticker in selected:
+            assert initial_state.alpha_quintiles.get(ticker) == 1
 
     @pytest.mark.asyncio
-    async def test_process_calculates_initial_weights(
+    async def test_skips_when_data_validation_failed(
         self,
         alpha_agent: AlphaAgent,
-        sample_alpha_model: AlphaModel,
     ):
-        """Test that process calculates initial alpha-weighted weights."""
-        state = create_initial_state(
-            portfolio_id="test",
-            as_of_date=date(2024, 1, 1),
+        """Test that agent skips when data validation failed."""
+        state = PortfolioState(
+            portfolio_id="TEST",
+            data_validation_passed=False,
+            use_llm=False,
         )
-        state["alpha_model"] = sample_alpha_model
-        state["current_step"] = "data_loaded"
         
-        result = await alpha_agent.process(state, n_securities=10)
+        result = await alpha_agent(state)
         
-        # Check that initial weights are stored in llm_insights
-        assert "initial_weights" in result.get("llm_insights", {})
-        weights = result["llm_insights"]["initial_weights"]
-        
-        # Weights should sum to 1
-        assert abs(sum(weights.values()) - 1.0) < 0.01
+        assert "selected_tickers" not in result or not result.get("selected_tickers")
+        assert "Skipped" in str(result.get("execution_log", []))
 
+    @pytest.mark.asyncio
+    async def test_generates_analysis(
+        self,
+        alpha_agent: AlphaAgent,
+        initial_state: PortfolioState,
+    ):
+        """Test that agent generates alpha analysis."""
+        result = await alpha_agent(initial_state)
+        
+        assert "alpha_analysis" in result
+        assert len(result["alpha_analysis"]) > 0
+
+    @pytest.mark.asyncio
+    async def test_execution_log_populated(
+        self,
+        alpha_agent: AlphaAgent,
+        initial_state: PortfolioState,
+    ):
+        """Test that execution log is populated."""
+        result = await alpha_agent(initial_state)
+        
+        assert "execution_log" in result
+        assert len(result["execution_log"]) > 0
+        assert any("AlphaAgent" in log for log in result["execution_log"])
+
+    @pytest.mark.asyncio
+    async def test_respects_portfolio_size(
+        self,
+        alpha_agent: AlphaAgent,
+    ):
+        """Test that agent respects portfolio size from state."""
+        state = PortfolioState(
+            portfolio_id="TEST",
+            portfolio_size=10,
+            data_validation_passed=True,
+            use_llm=False,
+            alpha_scores={f"STOCK{i:02d}": 0.95 - i * 0.02 for i in range(50)},
+            alpha_quintiles={f"STOCK{i:02d}": 1 for i in range(50)},
+            sector_mapping={f"STOCK{i:02d}": "Tech" for i in range(50)},
+        )
+        
+        result = await alpha_agent(state)
+        
+        assert len(result["selected_tickers"]) == 10
+
+
+class TestAlphaAgentTools:
+    """Tests for AlphaAgent tool handling."""
+
+    def test_agent_has_tools(self):
+        """Test that agent has the alpha loading tools."""
+        agent = AlphaAgent(
+            alpha_service=AlphaService(),
+            llm_provider=None,
+        )
+        
+        assert len(agent._tools) >= 1
+        tool_names = [t.name for t in agent._tools]
+        assert "load_alpha_scores" in tool_names
+
+    def test_get_langchain_llm_returns_none_without_provider(self):
+        """Test that _get_langchain_llm returns None without provider."""
+        agent = AlphaAgent(
+            alpha_service=AlphaService(),
+            llm_provider=None,
+        )
+        
+        assert agent._get_langchain_llm() is None

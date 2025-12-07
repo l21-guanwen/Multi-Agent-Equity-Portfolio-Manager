@@ -13,15 +13,19 @@ This system uses five specialized AI agents orchestrated by LangGraph to:
 
 ## ✨ Features
 
-- **Multi-Agent Architecture**: 5 specialized agents (Data, Alpha, Risk, Optimization, Compliance)
+- **ReAct Agent Architecture**: Agents use LLM to reason about and select tools (Reasoning + Acting)
+- **Multi-Agent Orchestration**: 5 specialized agents orchestrated by LangGraph
+- **Tool-Based Data Loading**: Extensible tool system for data sources (CSV now, APIs supported - see [Developer Guide](DEVELOPER_GUIDE.md#replacing-csv-with-api-data-sources))
+- **LLM-Driven Optimization**: LLM can directly determine portfolio weights based on objectives
 - **Flexible LLM Integration**: Supports OpenAI (GPT-4), DeepSeek, and Anthropic (Claude)
-- **Mean-Variance Optimization**: Constrained portfolio construction using `cvxpy` or `scipy`
+- **Fallback Mode**: When `use_llm=False`, uses mathematical optimization (CVXPY)
 - **Barra-Style Risk Model**: 8-factor model with idiosyncratic risk
 - **Constraint Management**: Single stock (±1%) and sector (±2%) active weight limits
 - **Customizable Data**: Users can provide their own benchmark, universe, alpha scores, and constraints
 
 ## 🏗️ Architecture
 
+### Agent Workflow
 ```
 ┌─────────────┐
 │ Data Agent  │  ← Load benchmark, universe, alpha, risk model
@@ -51,6 +55,34 @@ This system uses five specialized AI agents orchestrated by LangGraph to:
          ▼
     [Final Portfolio]
 ```
+
+### ReAct Agent Pattern
+
+Each agent follows the **ReAct (Reasoning + Acting)** pattern:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     ReAct Agent Loop                        │
+├─────────────────────────────────────────────────────────────┤
+│ 1. LLM receives task + available tools                      │
+│ 2. LLM outputs: THOUGHT → ACTION → ACTION_INPUT             │
+│ 3. Agent executes the chosen tool                           │
+│ 4. Tool returns OBSERVATION                                 │
+│ 5. Repeat until LLM outputs ACTION: FINISH                  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Available Tools
+
+| Tool | Description |
+|------|-------------|
+| `load_benchmark` | Load S&P 500 benchmark constituents and weights |
+| `load_alpha_scores` | Load AI-generated alpha scores and quintiles |
+| `load_risk_model` | Load Barra-style factor loadings and covariance |
+| `load_constraints` | Load stock (±1%) and sector (±2%) constraints |
+| `load_transaction_costs` | Load trading cost estimates |
+
+Tools are extensible - add new tools (e.g., API-based data) by implementing `BaseTool`. See [Developer Guide](DEVELOPER_GUIDE.md#replacing-csv-with-api-data-sources) for examples of integrating external APIs for alpha and risk data.
 
 ## 📦 Installation
 
@@ -200,7 +232,9 @@ SECTOR_ACTIVE_WEIGHT_LIMIT=0.02 # ±2% vs benchmark per sector
 
 ## 📊 Data Files
 
-The system reads input data from CSV files in the `data/` folder. **You can customize these files to change the investment universe, benchmark, alpha model, or constraints.**
+The system reads input data from CSV files in the `data/` folder. **You can customize these files to change the investment universe, benchmark, alpha model, or constraints.** 
+
+**Future**: The system supports API-based data sources - see [Developer Guide](DEVELOPER_GUIDE.md#replacing-csv-with-api-data-sources) for integrating external APIs for alpha scores and risk models.
 
 ### Required Files
 
@@ -512,6 +546,11 @@ PORTFOLIO_SIZE=50
 RISK_AVERSION=0.1
 PORTFOLIO_SIZE=15
 ```
+
+## 📚 Documentation
+
+- **[User Guide](USER_GUIDE.md)** - Complete guide for using the system, including data preparation, API usage, and troubleshooting
+- **[Developer Guide](DEVELOPER_GUIDE.md)** - Technical documentation for developers, including architecture, extending the system, and testing
 
 ## 📝 License
 

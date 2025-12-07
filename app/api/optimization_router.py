@@ -48,6 +48,7 @@ async def run_optimization(
             as_of_date=request.as_of_date or "",
             portfolio_size=request.portfolio_size,
             max_iterations=request.max_iterations,
+            use_llm=request.use_llm_analysis,  # Controls LLM-based vs mathematical optimization
         )
         
         return OptimizationResponse(
@@ -93,6 +94,7 @@ async def execute_agent_workflow(
             as_of_date=request.as_of_date or "",
             portfolio_size=request.portfolio_size,
             max_iterations=request.max_iterations,
+            use_llm=request.use_llm,  # Controls LLM-based vs mathematical optimization
         )
         
         # Build holdings list

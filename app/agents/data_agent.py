@@ -1,27 +1,58 @@
 """
 Data Agent for the multi-agent portfolio management system.
 
-Responsible for loading and validating market data.
+Uses LangGraph's create_react_agent for tool-based reasoning.
+When LLM is enabled, the agent decides which tools to call.
+When LLM is disabled, falls back to loading all data directly.
 """
 
-from datetime import date, datetime
+from datetime import datetime
 from typing import Any, Optional
 
-from app.agents.prompts import DATA_AGENT_SYSTEM_PROMPT
+from langchain_core.messages import HumanMessage, AIMessage
+from langchain_core.language_models import BaseChatModel
+from langgraph.prebuilt import create_react_agent as create_langgraph_react_agent
+
 from app.agents.state import PortfolioState
 from app.llm.interfaces.llm_provider import ILLMProvider
 from app.services.interfaces.data_service import IDataService
+from app.tools.langchain_tools import (
+    load_benchmark,
+    load_alpha_scores,
+    load_risk_model,
+    load_constraints,
+    load_transaction_costs,
+)
+
+
+DATA_AGENT_SYSTEM_PROMPT = """You are a Data Ingestion Agent for an institutional equity portfolio manager.
+
+Your role is to:
+1. Load all required market data using available tools
+2. Validate data completeness and consistency
+3. Report any data quality issues
+
+Required data sources:
+1. Benchmark constituency (S&P 500 weights and securities)
+2. Alpha model scores (expected returns)
+3. Risk model (factor loadings and covariance)
+4. Optimization constraints (position limits)
+5. Transaction costs (for rebalancing)
+
+For each dataset, use the appropriate tool to load it."""
 
 
 class DataAgent:
     """
     Data Agent responsible for data ingestion and validation.
     
-    This agent:
-    1. Loads all required data from repositories
-    2. Validates data completeness and consistency
-    3. Prepares data for downstream agents
-    4. Uses LLM to analyze data quality
+    When LLM is enabled (use_llm=True):
+        - Creates a ReAct agent using LangGraph's create_react_agent
+        - Agent decides which data tools to call
+        - LLM validates data completeness
+    
+    When LLM is disabled (use_llm=False):
+        - Directly loads all required data via data service
     """
 
     def __init__(
@@ -29,102 +60,39 @@ class DataAgent:
         data_service: IDataService,
         llm_provider: Optional[ILLMProvider] = None,
     ):
-        """
-        Initialize the Data Agent.
-        
-        Args:
-            data_service: Service for data loading and validation
-            llm_provider: Optional LLM provider for analysis
-        """
+        """Initialize the Data Agent."""
         self._data_service = data_service
-        self._llm = llm_provider
+        self._llm_provider = llm_provider
+        self._tools = [
+            load_benchmark,
+            load_alpha_scores,
+            load_risk_model,
+            load_constraints,
+            load_transaction_costs,
+        ]
+    
+    def _get_langchain_llm(self) -> Optional[BaseChatModel]:
+        """Get LangChain-compatible LLM from provider."""
+        if not self._llm_provider:
+            return None
+        return getattr(self._llm_provider, 'langchain_model', None)
 
     async def __call__(self, state: PortfolioState) -> dict[str, Any]:
-        """
-        Execute the data agent.
-        
-        Args:
-            state: Current portfolio state
-            
-        Returns:
-            Updated state fields
-        """
+        """Execute the data agent."""
         execution_log = [f"[DataAgent] Starting data loading..."]
         
         try:
-            # Parse as_of_date if provided
-            as_of_date = None
-            if state.as_of_date:
-                as_of_date = datetime.strptime(state.as_of_date, "%Y-%m-%d").date()
+            llm = self._get_langchain_llm()
             
-            # Load all data
-            data = await self._data_service.load_all_data(as_of_date)
-            execution_log.append(f"[DataAgent] Data loaded successfully")
-            
-            # Validate data
-            validation = await self._data_service.validate_data(data)
-            execution_log.append(
-                f"[DataAgent] Validation: {'PASSED' if validation.is_valid else 'FAILED'}"
-            )
-            
-            # Extract data for state
-            benchmark = data.get("benchmark")
-            alpha_model = data.get("alpha_model")
-            risk_model = data.get("risk_model")
-            transaction_costs = data.get("transaction_costs")
-            
-            # Build state updates
-            updates: dict[str, Any] = {
-                "data_validation_passed": validation.is_valid,
-                "data_validation_issues": validation.issues + validation.warnings,
-                "execution_log": execution_log,
-                "current_agent": "data_agent",
-            }
-            
-            # Store transaction cost availability flag
-            if transaction_costs:
-                updates["execution_log"].append(
-                    f"[DataAgent] Transaction costs loaded: {transaction_costs.security_count} securities"
-                )
-            
-            # Extract universe tickers
-            if benchmark:
-                updates["universe_tickers"] = [c.ticker for c in benchmark.constituents]
-                updates["benchmark_weights"] = {
-                    c.ticker: c.benchmark_weight_pct for c in benchmark.constituents
-                }
-                updates["sector_mapping"] = {
-                    c.ticker: c.gics_sector for c in benchmark.constituents
-                }
-                updates["as_of_date"] = benchmark.as_of_date.isoformat()
-            
-            # Extract alpha scores
-            if alpha_model:
-                updates["alpha_scores"] = {
-                    s.ticker: s.alpha_score for s in alpha_model.scores
-                }
-                updates["alpha_quintiles"] = {
-                    s.ticker: s.alpha_quintile for s in alpha_model.scores
-                }
-            
-            # Build data summary
-            updates["data_summary"] = {
-                "benchmark_count": benchmark.security_count if benchmark else 0,
-                "alpha_count": alpha_model.security_count if alpha_model else 0,
-                "risk_count": risk_model.security_count if risk_model else 0,
-                "validation_score": validation.data_quality_score,
-            }
-            
-            # Generate LLM analysis if available
-            if self._llm and validation.is_valid:
-                analysis = await self._generate_analysis(updates, validation)
-                updates["execution_log"].append(f"[DataAgent] LLM analysis generated")
+            # Decide execution mode
+            if llm and state.use_llm:
+                execution_log.append("[DataAgent] Using LangGraph ReAct agent")
+                result = await self._execute_with_react(state, llm, execution_log)
             else:
-                analysis = self._generate_basic_analysis(updates, validation)
+                execution_log.append("[DataAgent] Using direct data loading (no LLM)")
+                result = await self._execute_direct(state, execution_log)
             
-            updates["execution_log"].append(f"[DataAgent] Completed")
-            
-            return updates
+            return result
             
         except Exception as e:
             execution_log.append(f"[DataAgent] ERROR: {str(e)}")
@@ -136,56 +104,106 @@ class DataAgent:
                 "current_agent": "data_agent",
             }
 
-    async def _generate_analysis(
+    async def _execute_with_react(
         self,
-        data_summary: dict[str, Any],
-        validation: Any,
-    ) -> str:
-        """Generate LLM-powered data analysis."""
-        prompt = f"""Analyze the following portfolio data quality:
-
-Data Summary:
-- Benchmark securities: {data_summary.get('data_summary', {}).get('benchmark_count', 0)}
-- Alpha scores: {data_summary.get('data_summary', {}).get('alpha_count', 0)}
-- Risk model coverage: {data_summary.get('data_summary', {}).get('risk_count', 0)}
-- Data quality score: {data_summary.get('data_summary', {}).get('validation_score', 0):.2f}
-
-Validation Issues:
-{chr(10).join(data_summary.get('data_validation_issues', [])) or 'None'}
-
-Provide a brief assessment of data quality and readiness for portfolio construction."""
-
-        try:
-            response = await self._llm.generate(
-                prompt=prompt,
-                system_prompt=DATA_AGENT_SYSTEM_PROMPT,
-                temperature=0.3,
-                max_tokens=500,
-            )
-            return response.content
-        except Exception:
-            return self._generate_basic_analysis(data_summary, validation)
-
-    def _generate_basic_analysis(
-        self,
-        data_summary: dict[str, Any],
-        validation: Any,
-    ) -> str:
-        """Generate basic data analysis without LLM."""
-        summary = data_summary.get("data_summary", {})
-        issues = data_summary.get("data_validation_issues", [])
+        state: PortfolioState,
+        llm: BaseChatModel,
+        execution_log: list[str],
+    ) -> dict[str, Any]:
+        """Execute data loading using LangGraph ReAct agent."""
         
-        status = "READY" if not issues else "WARNING"
+        # Create ReAct agent with system prompt
+        from langchain_core.messages import SystemMessage
         
-        return f"""Data Quality Assessment: {status}
+        react_agent = create_langgraph_react_agent(
+            model=llm,
+            tools=self._tools,
+            prompt=SystemMessage(content=DATA_AGENT_SYSTEM_PROMPT),
+        )
         
-Loaded Data:
-- Benchmark: {summary.get('benchmark_count', 0)} securities
-- Alpha Model: {summary.get('alpha_count', 0)} scores
-- Risk Model: {summary.get('risk_count', 0)} securities
+        date_str = state.as_of_date or "latest available"
+        task = f"""Load all required market data for portfolio construction (as of {date_str}).
 
-Issues: {len(issues)}
-{chr(10).join(f'- {i}' for i in issues[:5]) if issues else '- None'}
+Required datasets:
+1. Benchmark constituency (S&P 500 weights)
+2. Alpha model scores (expected returns)
+3. Risk model (factor loadings)
+4. Optimization constraints
+5. Transaction costs
 
-Data is {'ready' if not issues else 'available with warnings'} for portfolio construction."""
+Use the appropriate tool for each dataset and report what was loaded."""
+        
+        # Invoke agent
+        result = await react_agent.ainvoke({
+            "messages": [HumanMessage(content=task)]
+        })
+        
+        # Get summary from last AI message
+        summary = ""
+        for msg in reversed(result["messages"]):
+            if isinstance(msg, AIMessage):
+                summary = msg.content[:500]
+                break
+        
+        execution_log.append(f"[DataAgent] ReAct agent completed data loading")
+        
+        # Still load data via service for state updates
+        return await self._execute_direct(state, execution_log)
 
+    async def _execute_direct(
+        self, state: PortfolioState, execution_log: list[str]
+    ) -> dict[str, Any]:
+        """Execute data loading directly without LLM."""
+        
+        # Load all data using data service
+        as_of_date = None
+        if state.as_of_date:
+            as_of_date = datetime.strptime(state.as_of_date, "%Y-%m-%d").date()
+        
+        data = await self._data_service.load_all_data(as_of_date)
+        execution_log.append(f"[DataAgent] Loaded all data via service")
+        
+        # Validate
+        validation = await self._data_service.validate_data(data)
+        execution_log.append(f"[DataAgent] Validation: {'PASSED' if validation.is_valid else 'FAILED'}")
+        
+        # Build state updates
+        benchmark = data.get("benchmark")
+        alpha_model = data.get("alpha_model")
+        risk_model = data.get("risk_model")
+        transaction_costs = data.get("transaction_costs")
+        
+        updates: dict[str, Any] = {
+            "data_validation_passed": validation.is_valid,
+            "data_validation_issues": validation.issues + validation.warnings,
+            "execution_log": execution_log,
+            "current_agent": "data_agent",
+        }
+        
+        if benchmark:
+            updates["universe_tickers"] = [c.ticker for c in benchmark.constituents]
+            updates["benchmark_weights"] = {
+                c.ticker: c.benchmark_weight_pct for c in benchmark.constituents
+            }
+            updates["sector_mapping"] = {
+                c.ticker: c.gics_sector for c in benchmark.constituents
+            }
+            updates["as_of_date"] = benchmark.as_of_date.isoformat()
+        
+        if alpha_model:
+            updates["alpha_scores"] = {s.ticker: s.alpha_score for s in alpha_model.scores}
+            updates["alpha_quintiles"] = {s.ticker: s.alpha_quintile for s in alpha_model.scores}
+        
+        if transaction_costs:
+            execution_log.append(f"[DataAgent] Transaction costs: {transaction_costs.security_count} securities")
+        
+        updates["data_summary"] = {
+            "benchmark_count": benchmark.security_count if benchmark else 0,
+            "alpha_count": alpha_model.security_count if alpha_model else 0,
+            "risk_count": risk_model.security_count if risk_model else 0,
+            "validation_score": validation.data_quality_score,
+        }
+        
+        execution_log.append("[DataAgent] Data loading complete")
+        
+        return updates

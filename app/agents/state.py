@@ -29,6 +29,7 @@ class PortfolioState(BaseModel):
     as_of_date: str = Field(default="", description="Data as-of date (YYYY-MM-DD)")
     portfolio_id: str = Field(default="ALPHA_GROWTH_25", description="Portfolio identifier")
     portfolio_size: int = Field(default=25, description="Target number of holdings")
+    use_llm: bool = Field(default=True, description="Whether to use LLM for optimization decisions")
     
     # ===========================================
     # Input Data (loaded by Data Agent)

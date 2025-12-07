@@ -54,7 +54,7 @@ class OptimizationRequest(BaseModel):
     # LLM options
     use_llm_analysis: bool = Field(
         default=True,
-        description="Whether to generate LLM-powered analysis"
+        description="Whether to use LLM for optimization decisions. When True, LLM determines portfolio weights. When False, falls back to mathematical optimization (CVXPY)."
     )
 
     class Config:

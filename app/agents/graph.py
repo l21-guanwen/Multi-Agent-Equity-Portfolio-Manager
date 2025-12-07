@@ -12,7 +12,7 @@ from app.agents.state import PortfolioState
 from app.agents.data_agent import DataAgent
 from app.agents.alpha_agent import AlphaAgent
 from app.agents.risk_agent import RiskAgent
-from app.agents.optimization_agent import OptimizationAgent
+from app.agents.cot_optimization_agent import ChainOfThoughtOptimizationAgent
 from app.agents.compliance_agent import ComplianceAgent
 
 from app.llm.interfaces.llm_provider import ILLMProvider
@@ -70,8 +70,18 @@ class PortfolioGraph:
         self._data_agent = DataAgent(data_service, llm_provider)
         self._alpha_agent = AlphaAgent(alpha_service, llm_provider)
         self._risk_agent = RiskAgent(risk_service, risk_repository, llm_provider)
-        self._optimization_agent = OptimizationAgent(
-            optimization_service, risk_repository, constraint_repository, transaction_cost_repository, llm_provider
+        
+        # Get LangChain model for CoT agent
+        langchain_llm = None
+        if llm_provider:
+            langchain_llm = getattr(llm_provider, 'langchain_model', None)
+        
+        self._optimization_agent = ChainOfThoughtOptimizationAgent(
+            optimization_service=optimization_service,
+            risk_repository=risk_repository,
+            constraint_repository=constraint_repository,
+            transaction_cost_repository=transaction_cost_repository,
+            llm=langchain_llm,
         )
         self._compliance_agent = ComplianceAgent(
             compliance_service, constraint_repository, llm_provider
@@ -158,6 +168,7 @@ class PortfolioGraph:
         as_of_date: str = "",
         portfolio_size: int = 25,
         max_iterations: int = 5,
+        use_llm: bool = True,
     ) -> PortfolioState:
         """
         Run the portfolio construction workflow.
@@ -167,6 +178,7 @@ class PortfolioGraph:
             as_of_date: Data as-of date (YYYY-MM-DD)
             portfolio_size: Target number of holdings
             max_iterations: Maximum optimization iterations
+            use_llm: Whether to use LLM for optimization decisions
             
         Returns:
             Final PortfolioState after workflow completion
@@ -177,13 +189,17 @@ class PortfolioGraph:
             as_of_date=as_of_date,
             portfolio_size=portfolio_size,
             max_iterations=max_iterations,
+            use_llm=use_llm,
         )
         
         # Compile and run graph
         compiled = self.compile()
         
-        # Run the graph
-        final_state = await compiled.ainvoke(initial_state)
+        # Run the graph with higher recursion limit
+        final_state = await compiled.ainvoke(
+            initial_state,
+            config={"recursion_limit": 50}
+        )
         
         return PortfolioState.model_validate(final_state)
 

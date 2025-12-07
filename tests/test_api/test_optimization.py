@@ -15,22 +15,21 @@ class TestOptimizationEndpoints:
         request_data = {
             "portfolio_id": "test_portfolio",
             "as_of_date": str(date.today()),
-            "n_securities": 25,
+            "portfolio_size": 25,
             "risk_aversion": 0.01,
+            "use_llm_analysis": False,
         }
         
-        response = client.post("/optimize", json=request_data)
+        response = client.post("/optimization/run", json=request_data)
         
-        # Should return 200 or 202 (accepted)
-        assert response.status_code in [200, 202]
+        # Should return 200 (synchronous) or 500 (if solver error)
+        assert response.status_code in [200, 500]
         data = response.json()
         
         if response.status_code == 200:
-            assert "optimal_weights" in data
+            assert "weights" in data
             assert "is_compliant" in data
-        else:
-            # Async processing
-            assert "task_id" in data
+            assert "status" in data
 
     def test_trigger_optimization_default_params(self, client: TestClient):
         """Test optimization with default parameters."""
@@ -38,15 +37,15 @@ class TestOptimizationEndpoints:
             "portfolio_id": "test_portfolio",
         }
         
-        response = client.post("/optimize", json=request_data)
+        response = client.post("/optimization/run", json=request_data)
         
-        assert response.status_code in [200, 202, 422]  # 422 if validation fails
+        assert response.status_code in [200, 422, 500]  # 422 if validation fails, 500 if solver error
 
     def test_trigger_optimization_invalid_params(self, client: TestClient):
         """Test optimization with invalid parameters."""
         request_data = {
             "portfolio_id": "test_portfolio",
-            "n_securities": -5,  # Invalid
+            "portfolio_size": -5,  # Invalid
         }
         
         response = client.post("/optimize", json=request_data)

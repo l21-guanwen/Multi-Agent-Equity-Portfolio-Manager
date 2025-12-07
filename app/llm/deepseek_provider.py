@@ -10,6 +10,7 @@ from typing import Optional, Type
 
 import httpx
 from pydantic import BaseModel
+from langchain_openai import ChatOpenAI
 
 from app.llm.interfaces.llm_provider import (
     ILLMProvider,
@@ -60,6 +61,19 @@ class DeepSeekProvider(ILLMProvider):
             },
             timeout=120.0,
         )
+        
+        # LangChain-compatible model for ReAct agents
+        self._langchain_model = ChatOpenAI(
+            model=model,
+            api_key=api_key,
+            base_url=f"{self._base_url}/v1",
+            temperature=0.7,
+        )
+
+    @property
+    def langchain_model(self) -> ChatOpenAI:
+        """Get LangChain-compatible chat model for use with LangGraph agents."""
+        return self._langchain_model
 
     @property
     def provider_name(self) -> str:
