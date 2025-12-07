@@ -824,7 +824,8 @@ app/
 │   ├── interfaces/
 │   ├── openai_provider.py
 │   ├── deepseek_provider.py
-│   └── anthropic_provider.py
+│   ├── anthropic_provider.py
+│   └── openrouter_provider.py  # Unified API for 100+ models
 │
 ├── models/             # Pydantic domain models
 │   ├── alpha.py
@@ -871,7 +872,7 @@ app/
 
 #### 4. Strategy Pattern
 - Multiple solvers (CVXPY, SCIPY)
-- Multiple LLM providers (OpenAI, DeepSeek, Anthropic)
+- Multiple LLM providers (OpenAI, DeepSeek, Anthropic, OpenRouter)
 - Selected via configuration
 
 ---

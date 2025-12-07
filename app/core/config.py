@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     # ===========================================
     # LLM Provider Configuration
     # ===========================================
-    llm_provider: Literal["openai", "deepseek", "anthropic"] = "openai"
+    llm_provider: Literal["openai", "deepseek", "anthropic", "openrouter"] = "openai"
     llm_model: str = "gpt-4"
     llm_temperature: float = 0.7
     llm_max_tokens: int = 2000
@@ -39,6 +39,11 @@ class Settings(BaseSettings):
     deepseek_api_key: str = ""
     deepseek_base_url: str = "https://api.deepseek.com"
     anthropic_api_key: str = ""
+    
+    # OpenRouter Configuration (unified API for multiple providers)
+    openrouter_api_key: str = ""
+    openrouter_site_url: str = ""  # Optional: for analytics
+    openrouter_site_name: str = ""  # Optional: for analytics
 
     # ===========================================
     # Data Source Configuration
@@ -74,6 +79,8 @@ class Settings(BaseSettings):
             return self.deepseek_api_key
         elif self.llm_provider == "anthropic":
             return self.anthropic_api_key
+        elif self.llm_provider == "openrouter":
+            return self.openrouter_api_key
         else:
             raise ValueError(f"Unknown LLM provider: {self.llm_provider}")
 

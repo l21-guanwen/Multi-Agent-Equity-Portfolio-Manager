@@ -17,7 +17,7 @@ This system uses five specialized AI agents orchestrated by LangGraph to:
 - **Multi-Agent Orchestration**: 5 specialized agents orchestrated by LangGraph
 - **Tool-Based Data Loading**: Extensible tool system for data sources (CSV now, APIs supported - see [Developer Guide](DEVELOPER_GUIDE.md#replacing-csv-with-api-data-sources))
 - **LLM-Driven Optimization**: LLM can directly determine portfolio weights based on objectives
-- **Flexible LLM Integration**: Supports OpenAI (GPT-4), DeepSeek, and Anthropic (Claude)
+- **Flexible LLM Integration**: Supports OpenAI, DeepSeek, Anthropic, and **OpenRouter** (100+ models)
 - **Fallback Mode**: When `use_llm=False`, uses mathematical optimization (CVXPY)
 - **Barra-Style Risk Model**: 8-factor model with idiosyncratic risk
 - **Constraint Management**: Single stock (±1%) and sector (±2%) active weight limits
@@ -193,7 +193,7 @@ curl http://localhost:8000/docs  # Interactive API documentation
 ### Environment Variables (`.env`)
 
 ```bash
-# LLM Provider: "openai" | "deepseek" | "anthropic"
+# LLM Provider: "openai" | "deepseek" | "anthropic" | "openrouter"
 LLM_PROVIDER=deepseek
 LLM_MODEL=deepseek-chat
 
@@ -201,6 +201,7 @@ LLM_MODEL=deepseek-chat
 OPENAI_API_KEY=sk-...
 DEEPSEEK_API_KEY=sk-...
 ANTHROPIC_API_KEY=sk-ant-...
+OPENROUTER_API_KEY=sk-or-...   # For OpenRouter (access 100+ models)
 
 # Data source path
 CSV_DATA_PATH=./data
@@ -589,6 +590,33 @@ LLM_PROVIDER=anthropic
 LLM_MODEL=claude-3-opus-20240229
 ANTHROPIC_API_KEY=sk-ant-...
 ```
+
+**OpenRouter (Access 100+ Models with One API Key)**
+
+OpenRouter provides a unified API to access models from OpenAI, Anthropic, Meta, Google, and more. Great for experimentation and model comparison.
+
+```bash
+LLM_PROVIDER=openrouter
+OPENROUTER_API_KEY=sk-or-...
+
+# Use any model from https://openrouter.ai/models
+LLM_MODEL=anthropic/claude-3.5-sonnet   # Anthropic Claude
+LLM_MODEL=openai/gpt-4o                  # OpenAI GPT-4o
+LLM_MODEL=meta-llama/llama-3.1-70b-instruct  # Meta Llama
+LLM_MODEL=google/gemini-pro-1.5          # Google Gemini
+LLM_MODEL=mistralai/mistral-large        # Mistral
+```
+
+Popular OpenRouter models:
+| Model | Description |
+|-------|-------------|
+| `openai/gpt-4o` | OpenAI's flagship model |
+| `anthropic/claude-3.5-sonnet` | Best balance of speed & quality |
+| `meta-llama/llama-3.1-70b-instruct` | Open-source, cost-effective |
+| `google/gemini-pro-1.5` | Google's latest |
+| `deepseek/deepseek-chat` | Great for coding tasks |
+
+Get your API key at [openrouter.ai/keys](https://openrouter.ai/keys)
 
 ### Switching Optimization Solvers
 

@@ -28,7 +28,7 @@ uv sync
 
 # Copy and configure environment
 cp env.example .env
-# Edit .env with your LLM API key
+# Edit .env with your LLM API key (OpenAI, DeepSeek, Anthropic, or OpenRouter)
 ```
 
 ### 2. Prepare Your Data

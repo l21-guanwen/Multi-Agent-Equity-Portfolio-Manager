@@ -12,6 +12,7 @@ from app.llm.interfaces.llm_provider import ILLMProvider
 from app.llm.openai_provider import OpenAIProvider
 from app.llm.deepseek_provider import DeepSeekProvider
 from app.llm.anthropic_provider import AnthropicProvider
+from app.llm.openrouter_provider import OpenRouterProvider
 
 
 class LLMProviderFactory:
@@ -22,6 +23,7 @@ class LLMProviderFactory:
     - OpenAI (GPT-4, GPT-3.5-turbo, etc.)
     - DeepSeek (DeepSeek-Chat, DeepSeek-Coder)
     - Anthropic (Claude 3 Opus, Sonnet, Haiku)
+    - OpenRouter (Unified API for 100+ models including OpenAI, Anthropic, Meta, Google)
     
     Example:
         # From settings
@@ -34,9 +36,16 @@ class LLMProviderFactory:
             api_key="sk-...",
             model="gpt-4"
         )
+        
+        # OpenRouter for easy model switching
+        provider = LLMProviderFactory.create(
+            provider_name="openrouter",
+            api_key="sk-or-...",
+            model="anthropic/claude-3.5-sonnet"
+        )
     """
 
-    SUPPORTED_PROVIDERS = ["openai", "deepseek", "anthropic"]
+    SUPPORTED_PROVIDERS = ["openai", "deepseek", "anthropic", "openrouter"]
 
     @classmethod
     def create(
@@ -77,6 +86,8 @@ class LLMProviderFactory:
             return cls._create_deepseek(api_key, model, base_url)
         elif provider_name == "anthropic":
             return cls._create_anthropic(api_key, model, base_url)
+        elif provider_name == "openrouter":
+            return cls._create_openrouter(api_key, model, **kwargs)
         else:
             raise ValueError(f"Unsupported provider: {provider_name}")
 
@@ -123,6 +134,16 @@ class LLMProviderFactory:
             return cls._create_anthropic(
                 api_key=settings.anthropic_api_key,
                 model=model,
+            )
+        
+        elif provider_name == "openrouter":
+            if not settings.openrouter_api_key:
+                raise ValueError("OPENROUTER_API_KEY is required for OpenRouter provider")
+            return cls._create_openrouter(
+                api_key=settings.openrouter_api_key,
+                model=model,
+                site_url=settings.openrouter_site_url or None,
+                site_name=settings.openrouter_site_name or None,
             )
         
         else:
@@ -173,6 +194,22 @@ class LLMProviderFactory:
         )
 
     @classmethod
+    def _create_openrouter(
+        cls,
+        api_key: str,
+        model: Optional[str] = None,
+        site_url: Optional[str] = None,
+        site_name: Optional[str] = None,
+    ) -> OpenRouterProvider:
+        """Create OpenRouter provider instance."""
+        return OpenRouterProvider(
+            api_key=api_key,
+            model=model or "openai/gpt-4o",
+            site_url=site_url,
+            site_name=site_name,
+        )
+
+    @classmethod
     def get_default_model(cls, provider_name: str) -> str:
         """
         Get the default model for a provider.
@@ -187,6 +224,7 @@ class LLMProviderFactory:
             "openai": "gpt-4",
             "deepseek": "deepseek-chat",
             "anthropic": "claude-3-opus-20240229",
+            "openrouter": "openai/gpt-4o",
         }
         return defaults.get(provider_name.lower(), "gpt-4")
 
@@ -219,6 +257,30 @@ class LLMProviderFactory:
                 "claude-3-sonnet-20240229",
                 "claude-3-haiku-20240307",
                 "claude-3-5-sonnet-20241022",
+            ],
+            "openrouter": [
+                # OpenAI via OpenRouter
+                "openai/gpt-4o",
+                "openai/gpt-4o-mini",
+                "openai/gpt-4-turbo",
+                "openai/o1-preview",
+                "openai/o1-mini",
+                # Anthropic via OpenRouter
+                "anthropic/claude-3.5-sonnet",
+                "anthropic/claude-3-opus",
+                "anthropic/claude-3-sonnet",
+                "anthropic/claude-3-haiku",
+                # Meta Llama via OpenRouter
+                "meta-llama/llama-3.1-405b-instruct",
+                "meta-llama/llama-3.1-70b-instruct",
+                "meta-llama/llama-3.1-8b-instruct",
+                # Google via OpenRouter
+                "google/gemini-pro-1.5",
+                "google/gemini-flash-1.5",
+                # Others
+                "mistralai/mistral-large",
+                "deepseek/deepseek-chat",
+                "qwen/qwen-2.5-72b-instruct",
             ],
         }
         return models.get(provider_name.lower(), [])

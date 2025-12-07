@@ -4,6 +4,7 @@ from app.llm.interfaces.llm_provider import ILLMProvider, LLMMessage, LLMRespons
 from app.llm.openai_provider import OpenAIProvider
 from app.llm.deepseek_provider import DeepSeekProvider
 from app.llm.anthropic_provider import AnthropicProvider
+from app.llm.openrouter_provider import OpenRouterProvider
 from app.llm.factory import LLMProviderFactory, create_llm_provider
 
 __all__ = [
@@ -15,6 +16,7 @@ __all__ = [
     "OpenAIProvider",
     "DeepSeekProvider",
     "AnthropicProvider",
+    "OpenRouterProvider",
     # Factory
     "LLMProviderFactory",
     "create_llm_provider",
