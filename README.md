@@ -419,7 +419,12 @@ Once running, access the interactive API docs at: **http://localhost:8000/docs**
 # Using curl
 curl -X POST http://localhost:8000/optimization/run \
   -H "Content-Type: application/json" \
-  -d '{"portfolio_id": "my_portfolio", "n_securities": 25}'
+  -d '{
+    "portfolio_id": "my_portfolio",
+    "portfolio_size": 25,
+    "risk_aversion": 0.01,
+    "use_llm_analysis": false
+  }'
 
 # Using Python
 import requests
@@ -428,31 +433,34 @@ response = requests.post(
     "http://localhost:8000/optimization/run",
     json={
         "portfolio_id": "my_portfolio",
-        "n_securities": 25,
-        "risk_aversion": 0.01
+        "portfolio_size": 25,
+        "risk_aversion": 0.01,
+        "use_llm_analysis": False
     }
 )
 result = response.json()
-print(result["optimal_weights"])
+print(result["weights"])  # Note: field is "weights", not "optimal_weights"
 ```
 
 ### Example Response
 
 ```json
 {
+  "status": "completed",
+  "is_compliant": true,
   "portfolio_id": "my_portfolio",
-  "optimal_weights": {
+  "as_of_date": "2025-12-05",
+  "total_holdings": 25,
+  "weights": {
     "AAPL": 0.072,
     "MSFT": 0.065,
-    "GOOGL": 0.045,
-    ...
+    "GOOGL": 0.045
   },
-  "is_compliant": true,
+  "expected_alpha": 0.85,
+  "expected_risk_pct": 14.5,
   "iterations": 1,
-  "risk_metrics": {
-    "portfolio_volatility": 0.15,
-    "tracking_error": 0.02
-  }
+  "violations": [],
+  "execution_log": [...]
 }
 ```
 
@@ -474,28 +482,87 @@ uv run pytest tests/ --cov=app --cov-report=html
 ```
 Multi-Agent-Equity-Portfolio-Manager/
 ├── app/
-│   ├── agents/           # LangGraph agents
-│   │   ├── data_agent.py
-│   │   ├── alpha_agent.py
-│   │   ├── risk_agent.py
-│   │   ├── optimization_agent.py
-│   │   ├── compliance_agent.py
-│   │   ├── graph.py      # LangGraph orchestration
-│   │   └── state.py      # Shared state definition
-│   ├── api/              # FastAPI routers
-│   ├── core/             # Config & constants
-│   ├── llm/              # LLM provider implementations
-│   ├── models/           # Pydantic domain models
-│   ├── repositories/     # Data access layer
-│   ├── schemas/          # API request/response schemas
-│   ├── services/         # Business logic
-│   ├── solvers/          # Optimization solvers
-│   └── utils/            # Utilities
-├── data/                 # Input CSV files (customizable)
-├── tests/                # Test suite
-├── main.py               # Application entry point
-├── .env                  # Environment configuration
-└── pyproject.toml        # Dependencies
+│   ├── agents/                    # LangGraph agents
+│   │   ├── data_agent.py          # ReAct agent for data loading
+│   │   ├── alpha_agent.py          # ReAct agent for alpha selection
+│   │   ├── risk_agent.py           # ReAct agent for risk analysis
+│   │   ├── cot_optimization_agent.py  # Chain-of-Thought optimization agent
+│   │   ├── compliance_agent.py    # Rule-based compliance validation
+│   │   ├── graph.py                # LangGraph orchestration
+│   │   ├── state.py                # Shared PortfolioState definition
+│   │   └── prompts.py              # System prompts for agents
+│   ├── api/                        # FastAPI routers
+│   │   ├── health_router.py
+│   │   ├── portfolio_router.py
+│   │   └── optimization_router.py
+│   ├── core/                       # Configuration & dependencies
+│   │   ├── config.py               # Settings management
+│   │   ├── constants.py            # Application constants
+│   │   └── dependencies.py        # Dependency injection
+│   ├── llm/                        # LLM provider implementations
+│   │   ├── factory.py              # LLM provider factory
+│   │   ├── openai_provider.py
+│   │   ├── deepseek_provider.py
+│   │   ├── anthropic_provider.py
+│   │   └── interfaces/
+│   ├── models/                     # Pydantic domain models
+│   │   ├── alpha.py
+│   │   ├── benchmark.py
+│   │   ├── constraint.py
+│   │   ├── risk.py
+│   │   ├── transaction_cost.py
+│   │   └── ...
+│   ├── repositories/               # Data access layer
+│   │   ├── csv/                    # CSV-based repositories
+│   │   │   ├── csv_alpha_repository.py
+│   │   │   ├── csv_benchmark_repository.py
+│   │   │   ├── csv_risk_repository.py
+│   │   │   └── ...
+│   │   └── interfaces/             # Repository interfaces
+│   ├── schemas/                    # API request/response schemas
+│   │   ├── agent_schema.py
+│   │   ├── optimization_schema.py
+│   │   └── portfolio_schema.py
+│   ├── services/                   # Business logic layer
+│   │   ├── data_service.py
+│   │   ├── alpha_service.py
+│   │   ├── risk_service.py
+│   │   ├── optimization_service.py
+│   │   ├── compliance_service.py
+│   │   └── interfaces/
+│   ├── solvers/                    # Optimization solvers
+│   │   ├── cvxpy_solver.py
+│   │   ├── scipy_solver.py
+│   │   ├── factory.py
+│   │   └── interfaces/
+│   ├── tools/                      # LangChain tools for agents
+│   │   ├── base.py                 # BaseTool class
+│   │   ├── data_tools.py           # Class-based tools
+│   │   └── langchain_tools.py     # @tool decorator tools
+│   └── utils/                      # Utilities
+│       └── csv_loader.py           # CSV loading utilities
+├── data/                           # Input CSV files (customizable)
+│   ├── 01_SP500_Benchmark_Constituency.csv
+│   ├── 04_Alpha_Model_SP500.csv
+│   ├── 05_Risk_Model_Factor_Loadings.csv
+│   └── ...
+├── tests/                          # Test suite
+│   ├── test_agents/
+│   ├── test_services/
+│   ├── test_repositories/
+│   ├── test_api/
+│   ├── test_tools/
+│   └── conftest.py
+├── main.py                         # Application entry point
+├── .env                            # Environment configuration
+├── env.example                     # Example environment file
+├── pyproject.toml                  # Dependencies & project config
+├── Dockerfile                      # Docker image definition
+├── docker-compose.yml              # Docker Compose configuration
+├── README.md                       # This file
+├── USER_GUIDE.md                   # User documentation
+├── DEVELOPER_GUIDE.md              # Developer documentation
+└── IMPLEMENTATION_PLAN.md          # Implementation tracking
 ```
 
 ## 🔧 Advanced Configuration
